@@ -1,8 +1,23 @@
 <h2>All Tasks</h2>
 
-<ul class="tasks">
+<!-- <ul class="tasks">
   <li *ngFor="let task of tasks">
     <strong>{{ task.short_description }}</strong>
     <p>{{ task.description }}</p>
   </li>
-</ul>
+</ul> -->
+
+<div>
+  <mat-table #table [dataSource]="tasks">
+    <ng-container matColumnDef="short_description">
+      <mat-header-cell *matHeaderCellDef><strong>Short Description</strong></mat-header-cell>
+      <mat-cell *matCellDef="let task"> {{ task.short_description }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef><strong>Description</strong></mat-header-cell>
+      <mat-cell *matCellDef="let task"> {{ task.description }} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

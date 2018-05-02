@@ -1,0 +1,11 @@
+.mat-header-row {
+    min-height: 35px;
+    padding: 5px 10px;
+    background-color: #415fff;
+    color: white;
+}
+
+.mat-row {
+    padding: 5px 10px;
+    min-height: 25px;
+}

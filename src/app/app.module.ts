@@ -11,12 +11,17 @@ import { MessagesComponent } from './messages/messages.component';
 
 import { AppRoutingModule }  from './app-routing.module';
 
+import { MatPaginatorModule, MatSortModule, MatTableModule } from "@angular/material";
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   declarations: [
     AppComponent,
