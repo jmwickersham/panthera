@@ -1,0 +1,8 @@
+<h2>All Tasks</h2>
+
+<ul class="tasks">
+  <li *ngFor="let task of tasks">
+    <strong>{{ task.short_description }}</strong>
+    <p>{{ task.description }}</p>
+  </li>
+</ul>

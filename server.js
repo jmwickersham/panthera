@@ -19,18 +19,23 @@ let httpStatus;
 // Set up App
 let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 
 mongoose.connect(url);
 
 // seedDB(); // Seed the database
 
 // Routes
-app.get("/", function(req, res) {
+app.get("/", function(req, res, next) {
     return res.send("sucessfully hit index page");
 });
 
 // Routes
-app.get("/tasks", function(req, res) {
+app.get("/api/tasks", function(req, res, next) {
     Task.find({}, function(err, allTasks) {
         if (err) {
             console.log(err);
