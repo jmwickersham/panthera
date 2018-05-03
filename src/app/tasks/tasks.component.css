@@ -9,3 +9,7 @@
     padding: 5px 10px;
     min-height: 25px;
 }
+
+.ui.table {
+    border: none;
+}
