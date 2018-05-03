@@ -1,16 +1,16 @@
-<div class="ui grid container">
+<!-- <div class="ui grid container">
   <div class="sixteen wide column">
     <h2>All Tasks</h2>
-    <mat-table #table [dataSource]="tasks" class="ui padded table">
+    <mat-table #table [dataSource]="tasks" class="ui padded table"> -->
 
-      <!-- Short Description Column -->
-      <ng-container matColumnDef="short_description">
+<!-- Short Description Column -->
+<!-- <ng-container matColumnDef="short_description">
         <mat-header-cell *matHeaderCellDef>Short Description</mat-header-cell>
         <mat-cell *matCellDef="let task">{{ task.short_description }}</mat-cell>
-      </ng-container>
+      </ng-container> -->
 
-      <!-- Description Column -->
-      <ng-container matColumnDef="description">
+<!-- Description Column -->
+<!-- <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef>Description</mat-header-cell>
         <mat-cell *matCellDef="let task">{{ task.description }}</mat-cell>
       </ng-container>
@@ -21,5 +21,43 @@
     </mat-table>
 
     <mat-paginator [length]="tasks.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+  </div>
+</div> -->
+
+<div class="ui grid container">
+  <div class="sixteen wide column">
+    <h2>All Tasks</h2>
+    <table class="ui selectable inverted table">
+      <thead>
+        <tr>
+          <th class="four wide">Short Description</th>
+          <th class="twelve wide">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks">
+          <td><a routerLink="/tasks/{{ task._id }}">{{ task.short_description }}</a></td>
+          <td>{{ task.description }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3">
+            <div class="ui right floated pagination menu">
+              <a class="icon item">
+                <i class="left chevron icon"></i>
+              </a>
+              <a class="item">1</a>
+              <a class="item">2</a>
+              <a class="item">3</a>
+              <a class="item">4</a>
+              <a class="icon item">
+                <i class="right chevron icon"></i>
+              </a>
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
   </div>
 </div>

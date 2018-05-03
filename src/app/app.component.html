@@ -4,7 +4,7 @@
       <i class="sidebar icon"></i>
       Menu
     </a>
-    <a class="item">{{ title }}</a>
+    <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
         <a class="item">Register</a>
         <a class="item">Login</a>
@@ -12,17 +12,17 @@
       </div>
   </div>
   <div class="ui left vertical inverted sidebar labeled icon menu" id="sidenav">
-    <a class="item">
+    <a class="item" routerLink="/" (click)="onToggle()">
       <i class="home icon"></i>
       Home
     </a>
-    <a class="item" routerLink="/tasks">
+    <a class="item" routerLink="/tasks" (click)="onToggle()">
       <i class="list icon"></i>
       Tasks
     </a>
-    <a class="item">
+    <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
       <i class="github alternate icon"></i>
-      [Placeholder]
+      My GitHub
     </a>
   </div>
 </nav>
