@@ -36,6 +36,35 @@ export class TaskService {
       );
   }
 
+  // GET task by id. Will 404 if id not found 
+  getTask(id: number): Observable<Task> {
+    const url = `${this.taskUrl}/${id}`;
+    return this.http.get<Task>(url).pipe(
+      tap(_ => this.log(`fetched tero id=${id}`)),
+      catchError(this.handleError<Task>(`getTero id=${id}`))
+    );
+  }
+
+  // POST Methods
+
+  // POST: add a new task to the server 
+  addTask (task: Task): Observable<Task> {
+    return this.http.post<Task>(this.taskUrl, task, httpOptions).pipe(
+      tap((task: Task) => this.log(`added task w/ id=${task._id}`)),
+      catchError(this.handleError<Task>('addTask'))
+    );
+  }
+
+  // PUT Methods
+
+  // PUT: update the task on the server 
+  updateTask (task: Task): Observable<any> {
+    return this.http.put(this.taskUrl, task, httpOptions).pipe(
+      tap(_ => this.log(`updated task id=${task._id}`)),
+      catchError(this.handleError<any>('updateTask'))
+    );
+  }
+
   // Error Handling
   
   /* Handle Http operation that failed. Let the app continue.

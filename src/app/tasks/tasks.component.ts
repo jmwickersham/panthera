@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Task } from './tasks'
+import { Task } from './tasks';
 import { TaskService } from './shared/task.service';
 
 @Component({
@@ -22,5 +22,18 @@ export class TasksComponent implements OnInit {
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
+  }
+
+  add(short_description: string): void {
+    short_description = short_description.trim();
+
+    if (!short_description) { 
+      return; 
+    }
+    
+    this.taskService.addTask({  } as Task)
+      .subscribe(task => {
+        this.tasks.push(task);
+      });
   }
 }

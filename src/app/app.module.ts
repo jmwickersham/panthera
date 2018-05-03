@@ -13,6 +13,7 @@ import { TaskService }       from './tasks/shared/task.service';
 import { MessageService }    from './messages/shared/message.service';
 
 import { AppRoutingModule }  from './app-routing.module';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,8 @@ import { AppRoutingModule }  from './app-routing.module';
   declarations: [
     AppComponent,
     TasksComponent,
-    MessagesComponent
+    MessagesComponent,
+    TaskDetailComponent
   ],
   providers: [
     TaskService,
