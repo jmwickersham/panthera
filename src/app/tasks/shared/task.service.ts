@@ -18,7 +18,7 @@ const httpOptions = {
 
 @Injectable()
 export class TaskService {
-  private taskUrl = 'http://localhost:3000/api/tasks';  // URL to web api
+  private taskUrl = `${process.env.SERVERURL}/api/tasks` || 'http://localhost:3000/api/tasks';  // URL to web api
 
   constructor(
     private http: HttpClient,

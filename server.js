@@ -14,7 +14,7 @@ let taskRoutes  = require("./server/controllers/tasks"),
 
 let url = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
 let port = process.env.PORT || 3000;
-let hostname = process.env.IP || "localhost";
+let hostname = process.env.SERVERURL || "localhost";
 let httpStatus;
 
 // Set up App
