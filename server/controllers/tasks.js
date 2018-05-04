@@ -39,9 +39,10 @@ router.get("/:id", function (req, res, next) {
 
 // Create route - Add a new task to DB
 router.post("/", function (req, res, next) {
+    console.log(`post: ${JSON.stringify(req.body)}`);
     let newTask = {
-        short_description: req.body.short_description,
-        description: req.body.description
+        short_description: req.body.task.short_description,
+        description: req.body.task.description
     };
 
     Task.create(newTask, function (err, newTask) {
@@ -59,6 +60,7 @@ router.post("/", function (req, res, next) {
 // Update route
 router.put("/:id", function(req, res) {
     // Find and update correct task
+    console.log(`put: ${JSON.stringify(req.body)}`);
     Task.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTask) {
         if (err) {
             console.log(err);

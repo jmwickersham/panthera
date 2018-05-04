@@ -20,7 +20,9 @@ export class TaskDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getTask();
+    if(this.route.snapshot.paramMap.get('id') != 'new') {
+      this.getTask();
+    }    
   }
 
   getTask(): void {
@@ -33,7 +35,17 @@ export class TaskDetailComponent implements OnInit {
     this.location.back();
   }
 
-  save(): void {
+  add(task): void {
+    if (!task) { 
+      return; 
+    }
+    this.taskService.addTask({ task } as Task)
+      .subscribe(task => {
+        this.task.push(task);
+      });
+  }
+
+  update(): void {
     this.taskService.updateTask(this.task)
       .subscribe(() => this.goBack());
   }

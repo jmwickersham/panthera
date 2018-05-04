@@ -1,18 +1,23 @@
-<div *ngIf="task">
-  <div class="ui grid container">
-    <div class="sixteen wide column">
-      <div class="ui form">
+<div class="ui grid container">
+  <div class="sixteen wide column">
+    <div class="ui inverted segment">
+      <form class="ui inverted form" #taskForm="ngForm">
         <div class="field">
           <label>Short Description</label>
-          <input [(ngModel)]="task.short_description" name="short_description">
+          <input type="text" [ngModel]="task?.short_description" (ngModelChange)="task.short_description=$event" name="short_description">
         </div>
         <div class="field">
           <label>Description</label>
-          <textarea>{{ task.description }}</textarea>
+          <textarea [ngModel]="task?.description" 
+              (ngModelChange)="task.description=$event" 
+              name="description">
+                  {{ task?.description }}
+          </textarea>
         </div>
-      </div>
-      <button (click)="save()" class="ui right floated primary button">Save</button>
-      <button (click)="goBack()" class="ui right floated button">Go Back</button>
+      </form>
     </div>
+    <button *ngIf="!task" (click)="add(taskForm.value)" class="ui right floated primary button">Submit</button>
+    <button *ngIf="task" (click)="update()" class="ui right floated primary button">Update</button>
+    <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
