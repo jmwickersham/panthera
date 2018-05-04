@@ -1,3 +1,5 @@
+import {environment} from '../../../environments/environment';
+
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -18,7 +20,7 @@ const httpOptions = {
 
 @Injectable()
 export class TaskService {
-  private taskUrl = `${process.env.SERVERURL}/api/tasks` || 'http://localhost:3000/api/tasks';  // URL to web api
+  private taskUrl = environment.serverUrl + '/api/tasks';
 
   constructor(
     private http: HttpClient,
@@ -72,11 +74,11 @@ export class TaskService {
   // PUT Methods
 
   // PUT: update the task on the server 
-  updateTask(task: Task): Observable<any> {
+  updateTask(task: Task): Observable<Task> {
     const url = `${this.taskUrl}/${task._id}`;
     return this.http.put<Task>(url, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task._id}`)),
-      catchError(this.handleError<any>(`updateTask task id=${task._id}`))
+      catchError(this.handleError<Task>(`updateTask task id=${task._id}`))
     );
   }
 
