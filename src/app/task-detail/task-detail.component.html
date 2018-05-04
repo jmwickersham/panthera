@@ -1,18 +1,18 @@
-<!--<div *ngIf="task"> -->
-<div class="ui grid container">
-  <div class="sixteen wide column">
-    <div class="ui form">
-      <div class="field">
-        <label>Short Description</label>
-        <textarea rows="2">{{ task.short_description }}</textarea>
+<div *ngIf="task">
+  <div class="ui grid container">
+    <div class="sixteen wide column">
+      <div class="ui form">
+        <div class="field">
+          <label>Short Description</label>
+          <input [(ngModel)]="task.short_description" name="short_description">
+        </div>
+        <div class="field">
+          <label>Description</label>
+          <textarea>{{ task.description }}</textarea>
+        </div>
       </div>
-      <div class="field">
-        <label>Description</label>
-        <textarea>{{ task.description }}</textarea>
-      </div>
+      <button (click)="save()" class="ui right floated primary button">Save</button>
+      <button (click)="goBack()" class="ui right floated button">Go Back</button>
     </div>
-    <button (click)="save()" class="ui right floated primary button">Save</button>
-    <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
-<!-- </div> -->

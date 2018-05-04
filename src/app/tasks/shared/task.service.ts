@@ -73,9 +73,10 @@ export class TaskService {
 
   // PUT: update the task on the server 
   updateTask(task: Task): Observable<any> {
-    return this.http.put(this.taskUrl, task, httpOptions).pipe(
+    const url = `${this.taskUrl}/${task._id}`;
+    return this.http.put<Task>(url, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task._id}`)),
-      catchError(this.handleError<any>('updateTask'))
+      catchError(this.handleError<any>(`updateTask task id=${task._id}`))
     );
   }
 

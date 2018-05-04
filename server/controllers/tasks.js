@@ -59,15 +59,17 @@ router.post("/", function (req, res, next) {
 // Update route
 router.put("/:id", function(req, res) {
     // Find and update correct task
-    Task.findByIdAndUpdate(req.params.id, req.body.task, function(err, updatedTask) {
-        if (err || !updatedTask) {
+    Task.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTask) {
+        if (err) {
             console.log(err);
             httpStatus = 400;
         }
         else if (!updatedTask) {
+            console.log('not found?');
             httpStatus = 404;
         }
         else {
+            console.log(`success: ${updatedTask}`);
             httpStatus = 201;
         }
         return res.status(httpStatus).json(updatedTask);
