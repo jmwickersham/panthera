@@ -20,7 +20,7 @@ const httpOptions = {
 
 @Injectable()
 export class TaskService {
-  private taskUrl = environment.serverUrl + '/api/tasks';
+  private taskUrl = environment.serverUrl + ':3000/api/tasks';
 
   constructor(
     private http: HttpClient,
