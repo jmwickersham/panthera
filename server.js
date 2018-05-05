@@ -34,6 +34,7 @@ mongoose.connect(dbURL);
 
 // seedDB(); // Seed the database
 
-app.listen((process.env.PORT || 3000), function () {
-  console.log("Panthera server has started");
+let server = app.listen(process.env.PORT || 3000, function () {
+  let port = server.address().port;
+  console.log("Panthera server has started on port", port);
 });
