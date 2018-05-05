@@ -41,8 +41,8 @@ router.get("/:id", function (req, res, next) {
 router.post("/", function (req, res, next) {
     console.log(`post: ${JSON.stringify(req.body)}`);
     let newTask = {
-        short_description: req.body.task.short_description,
-        description: req.body.task.description
+        short_description: req.body.short_description,
+        description: req.body.description
     };
 
     Task.create(newTask, function (err, newTask) {
@@ -80,6 +80,7 @@ router.put("/:id", function(req, res) {
 
 // Destroy Route
 router.delete("/:id", function(req, res) {
+    console.log(`delete: ${JSON.stringify(req.body)}`);
     Task.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
             console.log(err);
@@ -88,7 +89,7 @@ router.delete("/:id", function(req, res) {
         else {
             httpStatus = 204;
         }
-        return res.status(httpStatus);
+        return res.status(httpStatus).json(req.params.id);
     });
 });
 

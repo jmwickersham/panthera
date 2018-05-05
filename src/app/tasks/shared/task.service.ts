@@ -82,6 +82,19 @@ export class TaskService {
     );
   }
 
+  // DELETE Methods
+
+  // DELETE: delete the hero from the server
+  deleteTask (task: Task | number): Observable<Task> {
+    const id = typeof task === 'number' ? task : task._id;
+    const url = `${this.taskUrl}/${id}`;
+
+    return this.http.delete<Task>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted task`)),
+      catchError(this.handleError<Task>('deleteTask'))
+    );
+  }
+
   // Error Handling
 
   /* Handle Http operation that failed. Let the app continue.
