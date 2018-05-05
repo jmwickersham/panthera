@@ -35,7 +35,7 @@ export class TaskDetailComponent implements OnInit {
     this.location.back();
   }
 
-  add(task): void {
+  add(task: Task): void {
     if (!task) { 
       return; 
     }
