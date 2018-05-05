@@ -21,7 +21,6 @@ router.get("/", function (req, res, next) {
 
 // Show route - Shows more info about one task
 router.get("/:id", function (req, res, next) {
-    // Find the task with provided ID
     Task.findById(req.params.id, function (err, foundTask) {
         if (err) {
             console.log(err);
@@ -39,7 +38,6 @@ router.get("/:id", function (req, res, next) {
 
 // Create route - Add a new task to DB
 router.post("/", function (req, res, next) {
-    console.log(`post: ${JSON.stringify(req.body)}`);
     let newTask = {
         short_description: req.body.short_description,
         description: req.body.description
@@ -59,8 +57,6 @@ router.post("/", function (req, res, next) {
 
 // Update route
 router.put("/:id", function(req, res) {
-    // Find and update correct task
-    console.log(`put: ${JSON.stringify(req.body)}`);
     Task.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTask) {
         if (err) {
             console.log(err);
@@ -80,7 +76,6 @@ router.put("/:id", function(req, res) {
 
 // Destroy Route
 router.delete("/:id", function(req, res) {
-    console.log(`delete: ${JSON.stringify(req.body)}`);
     Task.findByIdAndRemove(req.params.id, function(err) {
         if (err) {
             console.log(err);
