@@ -12,8 +12,7 @@ let seedDB = require("./seeds");
 let taskRoutes  = require("./server/controllers/tasks"),
     indexRoutes = require("./server/controllers/index");
 
-let url = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
-let port = process.env.PORT || 3000;
+let dbURL = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
 let httpStatus;
 
 // Set up App
@@ -31,10 +30,10 @@ app.use(function (req, res, next) {
 app.use("/", indexRoutes);
 app.use("/api/tasks", taskRoutes);
 
-mongoose.connect(url);
+mongoose.connect(dbURL);
 
 // seedDB(); // Seed the database
 
-app.listen(port, '0.0.0.0', function () {
+app.listen((process.env.PORT || 3000), function () {
   console.log("Panthera server has started");
 });
