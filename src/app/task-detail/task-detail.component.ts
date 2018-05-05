@@ -39,10 +39,8 @@ export class TaskDetailComponent implements OnInit {
     if (!task) { 
       return; 
     }
-    this.taskService.addTask({ task } as Task)
-      .subscribe(task => {
-        this.task.push(task);
-      });
+    this.taskService.addTask(task)
+      .subscribe(task => this.task = task);
   }
 
   update(): void {
