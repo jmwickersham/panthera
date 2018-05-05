@@ -6,19 +6,25 @@
     <table class="ui selectable inverted table attached">
       <thead>
         <tr>
+          <th class="one wide"></th>
           <th class="four wide">Short Description</th>
-          <th class="twelve wide">Description</th>
+          <th class="seven wide">Description</th>
+          <th class="two wide">Created</th>
+          <th class="two wide">Updated</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <td><a routerLink="/tasks/{{ task._id }}">{{ task.short_description }}</a></td>
+          <td><a routerLink="/tasks/{{ task._id }}"><i class="info circle icon"></i></a></td>
+          <td>{{ task.short_description }}</td>
           <td>{{ task.description }}</td>
+          <td>{{ task.createdAt | date:'medium':'-0700' }}</td>
+          <td>{{ task.updatedAt | date:'medium':'-0700' }}</td>
         </tr>
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="3">
+          <th colspan="5">
             <div class="ui right floated pagination menu">
               <a class="icon item">
                 <i class="left chevron icon"></i>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute }           from '@angular/router';
+import { ActivatedRoute }   from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { Task } from '../tasks/tasks';
@@ -31,11 +31,7 @@ export class TaskDetailComponent implements OnInit {
     .subscribe(task => this.task = task);
   }
 
-  goBack(): void {
-    this.location.back();
-  }
-
-  add(task: Task): void {
+  addTask(task: Task): void {
     if (!task) { 
       return; 
     }
@@ -43,8 +39,17 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(task => this.task = task);
   }
 
-  update(): void {
+  updateTask(task: Task): void {
     this.taskService.updateTask(this.task)
+      .subscribe();
+  }
+
+  deleteTask(task: Task): void {
+    this.taskService.deleteTask(this.task)
       .subscribe(() => this.goBack());
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }
