@@ -4,12 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --env=prod | node server.js",
-    "build": "ng build --env=prod | node server.js",
+    "build": "ng build --env=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server": "node server.js",
     "local": "ng serve --env=dev"
+  },
+  "engines": {
+    "node:": "6.11.1"
   },
   "private": true,
   "dependencies": {
