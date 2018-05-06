@@ -4,7 +4,7 @@
         <form class="ui inverted form" #userForm="ngForm">
           <div class="field">
             <label>Username</label>
-            <input type="text" [ngModel]="user?.username" (ngModelChange)="user.username=$event" name="username">
+            <input type="text" [ngModel]="user?.username" (ngModelChange)="user.username=$event" name="username" disabled>
           </div>
           <div class="field">
             <label>First Name</label>
@@ -27,7 +27,7 @@
         </form>
       </div>
       <button (click)="updateuser()" class="ui right floated primary button">Update</button>
-      <button (click)="deleteuser()" class="ui right floated red button">Delete</button>
+      <!-- <button (click)="deleteuser()" class="ui right floated red button">Delete</button> -->
   
       <button (click)="goBack()" class="ui right floated button">Go Back</button>
     </div>

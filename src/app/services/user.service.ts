@@ -73,32 +73,14 @@ export class UserService {
     );
   }
 
-//   this.http.post('/api/register', this.registerData)
-//   .subscribe(resp => {
-//     console.log(resp);
-//     this.router.navigate(['login']);
-//   }, err => {
-//     this.message = err.error.msg;
-//   });
-// }
-
-// POST: login user
-loginUser(user: User): Observable<User> {
-  const url = `${this.indexUrl}/login`;
-  return this.http.post<User>(url, user, httpOptions).pipe(
-    tap((user: User) => this.log(`logged user in w/ id=${user._id}`)),
-    catchError(this.handleError<User>('loginUser'))
-  );
-}
-// this.http.post('/api/login', this.loginData)
-//       .subscribe(resp => {
-//         this.data = resp;
-//         localStorage.setItem('jwtToken', this.data.token);
-//       }, err => {
-//         this.message = err.error.msg;
-//       }
-//     );
-//   }
+  // POST: login user
+  loginUser(user: User): Observable<User> {
+    const url = `${this.indexUrl}/login`;
+    return this.http.post<User>(url, user, httpOptions).pipe(
+      tap((user: User) => this.log(`logged user in w/ id=${user._id}`)),
+      catchError(this.handleError<User>('loginUser'))
+    );
+  }
 
   // PUT Methods
 

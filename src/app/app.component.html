@@ -6,10 +6,10 @@
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-        <a class="item" routerLink="/">My Account</a>
+        <a ng-if="user.signedIn" class="item" routerLink="/users/{{user?._id}}">My Account</a>
         <a class="item" routerLink="/register">Register</a>
         <a class="item" routerLink="/login">Login</a>
-        <a class="item">Logout</a>
+        <a class="item" (click)="logout()">Logout</a>
       </div>
   </div>
   <div class="ui left vertical inverted sidebar labeled icon menu" id="sidenav">

@@ -18,8 +18,10 @@ import { RegisterComponent } from './register/register.component';
 
 import { TaskService }       from './services/task.service';
 import { MessageService }    from './services/message.service';
+import { UserService }       from './services/user.service';
 
 import { AppRoutingModule }  from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -40,11 +42,13 @@ import { AppRoutingModule }  from './app-routing.module';
     UsersComponent,
     UserDetailComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    DashboardComponent
   ],
   providers: [
     TaskService,
-    MessageService
+    MessageService,
+    UserService
   ],
   bootstrap: [ AppComponent ]
 })

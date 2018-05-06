@@ -9,9 +9,11 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/tasks', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'tasks', component: TasksComponent},
   { path: 'tasks/:id', component: TaskDetailComponent },
   { path: 'tasks/new', component: TaskDetailComponent },

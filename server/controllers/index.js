@@ -20,6 +20,7 @@ router.get("/", function (req, res, next) {
 
 // Registration logic
 router.post("/api/register", function (req, res) {
+  console.log(`register: ${req.body.username} / ${req.body.pasword}`);
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({
       success: false,
@@ -53,6 +54,7 @@ router.post("/api/register", function (req, res) {
 
 // Login logic
 router.post("/api/login", function (req, res) {
+  console.log(`login: ${req.body.username} / ${req.body.pasword}`);
   User.findOne({
     username: req.body.username
   }, function (err, user) {

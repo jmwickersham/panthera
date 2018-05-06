@@ -11,23 +11,23 @@
       <form class="ui inverted form" #registerForm="ngForm">
         <div class="field">
           <label>Username</label>
-          <input type="text" [(ngModel)]="registerData.username" name="username">
+          <input type="text" [ngModel]="registerData?.username" (ngModelChange)="registerData.username=$event" name="username">
         </div>
         <div class="field">
           <label>Password</label>
-          <input type="password" [(ngModel)]="registerData.password" name="password">
+          <input type="password" [ngModel]="registerData?.password" (ngModelChange)="registerData.password=$event" name="password">
         </div>
         <div class="field">
           <label>First Name</label>
-          <input type="text" [(ngModel)]="registerData.first_name" name="first_name">
+          <input type="text" [ngModel]="registerData?.first_name" (ngModelChange)="registerData.first_name=$event" name="first_name">
         </div>
         <div class="field">
           <label>Last Name</label>
-          <input type="text" [(ngModel)]="registerData.last_name" name="last_name">
+          <input type="text" [ngModel]="registerData?.last_name" (ngModelChange)="registerData.last_name=$event" name="last_name">
         </div>
       </form>
     </div>
-    <button (click)="register()" class="ui right floated primary button">Register</button>
+    <button (click)="register(registerForm.value)" class="ui right floated primary button">Register</button>
     <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
