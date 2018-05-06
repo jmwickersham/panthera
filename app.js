@@ -65,7 +65,9 @@ app.use(function (err, req, res, next) {
   }
 });
 
-let server = app.listen(process.env.PORT || 3000, function () {
+let port = parseInt(process.env.PORT) || 3000;
+
+let server = app.listen(port, function () {
   let port = server.address().port;
   console.log("Panthera server has started on port", port);
 });
