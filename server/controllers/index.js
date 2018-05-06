@@ -19,7 +19,7 @@ router.get("/", function (req, res, next) {
 // Auth Routes
 
 // Registration logic
-router.post("/register", function (req, res) {
+router.post("/api/register", function (req, res) {
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({
       success: false,
@@ -52,7 +52,7 @@ router.post("/register", function (req, res) {
 });
 
 // Login logic
-router.post("/login", function (req, res) {
+router.post("/api/login", function (req, res) {
   User.findOne({
     username: req.body.username
   }, function (err, user) {
@@ -83,13 +83,6 @@ router.post("/login", function (req, res) {
       });
     }
   });
-});
-
-// Logout
-router.get("/logout", function (req, res) {
-  req.logout();
-  req.flash("success", "Successfully logged you out.");
-  res.redirect("/campgrounds");
 });
 
 getToken = function (headers) {

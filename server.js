@@ -4,7 +4,6 @@ const express       = require("express"),
       mongoose      = require("mongoose"),
       passport      = require("passport"),
       LocalStrategy = require("passport-local"),
-      flash         = require("connect-flash"),
       favicon       = require("serve-favicon");
 
 // Require JS Model Exports
@@ -12,6 +11,7 @@ let Task = require("./server/models/task"),
     User = require("./server/models/user");
 
 let seedDB = require("./seeds");
+let config = require('./server/config/database');
 
 // Require JS Controller Exports
 let taskRoutes  = require("./server/controllers/tasks"),
@@ -22,7 +22,6 @@ let taskRoutes  = require("./server/controllers/tasks"),
 let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(flash());
 app.use(favicon(__dirname + '/src/favicon.ico'));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -40,17 +39,15 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res, next) {
  res.locals.currentUser = req.user;
- res.locals.error = req.flash("error");
- res.locals.success = req.flash("success");
  next();
 });
 
 // Route config
 app.use("/", indexRoutes);
 app.use("/api/tasks", taskRoutes);
-app.use("api/users", userRoutes);
+app.use("/api/users", userRoutes);
 
-mongoose.connect(config.database);
+mongoose.connect(config.dbURL);
 
 // seedDB(); // Seed the database
 

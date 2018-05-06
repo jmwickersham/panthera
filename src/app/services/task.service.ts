@@ -84,7 +84,7 @@ export class TaskService {
 
   // DELETE Methods
 
-  // DELETE: delete the hero from the server
+  // DELETE: delete the task from the server
   deleteTask (task: Task | number): Observable<Task> {
     const id = typeof task === 'number' ? task : task._id;
     const url = `${this.taskUrl}/${id}`;
