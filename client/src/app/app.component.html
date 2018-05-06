@@ -1,0 +1,36 @@
+<nav>
+  <div class="ui top attached menu">
+    <a class="item" (click)="onToggle()">
+      <i class="sidebar icon"></i>
+      Menu
+    </a>
+    <a class="item" routerLink="/">{{ title }}</a>
+    <div class="right menu">
+        <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">{{ auth.getUserDetails()?.name }}</a>
+        <a *ngIf="auth.isLoggedIn()" class="item" (click)="auth.logout()">Logout</a>
+        <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/register">Register</a>
+        <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/login">Login</a>
+      </div>
+  </div>
+  <div class="ui left vertical inverted sidebar labeled icon menu" id="sidenav">
+    <a class="item" routerLink="/" (click)="onToggle()">
+      <i class="home icon"></i>
+      Home
+    </a>
+    <a class="item" routerLink="/tasks" (click)="onToggle()">
+      <i class="list icon"></i>
+      Tasks
+    </a>
+    <a class="item" routerLink="/users" (click)="onToggle()">
+      <i class="user outline icon"></i>
+      Users
+    </a>
+    <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
+      <i class="github alternate icon"></i>
+      My GitHub
+    </a>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+<app-messages></app-messages>
