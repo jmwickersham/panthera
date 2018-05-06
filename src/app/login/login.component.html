@@ -1,0 +1,19 @@
+<div class="ui grid container">
+    <div class="sixteen wide column">
+      <div class="ui inverted segment">
+        <form class="ui inverted form" #userForm="ngForm">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" [ngModel]="user?.username" (ngModelChange)="user.username=$event" name="username">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="text" [ngModel]="user?.password" (ngModelChange)="user.password=$event" name="password">
+          </div>
+        </form>
+      </div>
+      <button (click)="register(userForm.value)" class="ui right floated primary button">Login</button>
+      <button (click)="goBack()" class="ui right floated button">Go Back</button>
+    </div>
+  </div>
+  

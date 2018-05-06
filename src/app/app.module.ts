@@ -8,14 +8,19 @@ import { HttpClientModule }  from '@angular/common/http';
 import { MatPaginatorModule, MatSortModule, MatTableModule } from "@angular/material";
 
 import { AppComponent }      from './app.component';
-import { TasksComponent }    from './tasks/tasks.component';
 import { MessagesComponent } from './messages/messages.component';
+import { TasksComponent }    from './tasks/tasks.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { UsersComponent } from './users/users.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
-import { TaskService }       from './tasks/shared/task.service';
-import { MessageService }    from './messages/shared/message.service';
+import { TaskService }       from './services/task.service';
+import { MessageService }    from './services/message.service';
 
 import { AppRoutingModule }  from './app-routing.module';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
+
 
 @NgModule({
   imports: [
@@ -31,7 +36,11 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     AppComponent,
     TasksComponent,
     MessagesComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    UsersComponent,
+    UserDetailComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   providers: [
     TaskService,

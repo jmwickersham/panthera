@@ -1,15 +1,16 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute }           from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { Task } from '../tasks/tasks';
-import { TaskService } from '../tasks/shared/task.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-task-detail',
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
+
 export class TaskDetailComponent implements OnInit {
   @Input() task: Task;
 

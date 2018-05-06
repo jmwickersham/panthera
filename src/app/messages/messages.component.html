@@ -1,7 +1,10 @@
-<div *ngIf="messageService.messages.length">
-
-  <h2>Messages</h2>
-  <button class="clear ui button" (click)="messageService.clear()">clear</button>
-  <div *ngFor='let message of messageService.messages'> {{message}} </div>
-
+<div class="ui grid container">
+  <div class="sixteen wide column">
+    <h2>Messages
+      <button class="ui right floated button" (click)="messageService.clear()">Clear Messages</button>
+    </h2>
+    <div *ngIf="messageService.messages.length">
+      <div *ngFor='let message of messageService.messages'> {{message}} </div>
+    </div>
+  </div>
 </div>

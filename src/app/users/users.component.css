@@ -1,0 +1,12 @@
+.ui.table {
+    border: none;
+}
+
+.ui.grid {
+    margin-top: 0rem;
+}
+
+i.info {
+    color: white;
+    font-size: 1.25em;
+}

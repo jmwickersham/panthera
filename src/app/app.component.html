@@ -6,8 +6,9 @@
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-        <a class="item">Register</a>
-        <a class="item">Login</a>
+        <a class="item" routerLink="/">My Account</a>
+        <a class="item" routerLink="/register">Register</a>
+        <a class="item" routerLink="/login">Login</a>
         <a class="item">Logout</a>
       </div>
   </div>
@@ -19,6 +20,10 @@
     <a class="item" routerLink="/tasks" (click)="onToggle()">
       <i class="list icon"></i>
       Tasks
+    </a>
+    <a class="item" routerLink="/users" (click)="onToggle()">
+      <i class="user outline icon"></i>
+      Users
     </a>
     <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
       <i class="github alternate icon"></i>

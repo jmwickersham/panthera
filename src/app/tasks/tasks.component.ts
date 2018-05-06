@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task } from './tasks';
-import { TaskService } from './shared/task.service';
+import { TaskService } from '../services/task.service';
 
 @Component({
   selector: 'app-tasks',
@@ -10,8 +10,6 @@ import { TaskService } from './shared/task.service';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[];
-  displayedColumns = ['short_description', 'description'];
-  dataSource = this.tasks;
   
   constructor(private taskService: TaskService) { }
 
