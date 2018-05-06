@@ -2,7 +2,21 @@ var mongoose = require("mongoose");
 
 var taskSchema = new mongoose.Schema({
     short_description: String,
-    description: String
+    description: String,
+    created_by: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
+    updated_by: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    }
 },
 {
     timestamps: true

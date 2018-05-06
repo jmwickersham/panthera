@@ -27,15 +27,20 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
     "core-js": "^2.4.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "jquery": "^3.3.1",
+    "jsonwebtoken": "^8.2.1",
     "mongoose": "^5.0.17",
     "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^5.0.0",
     "rxjs": "^5.5.6",
     "semantic-ui-css": "^2.3.1",
+    "serve-favicon": "^2.5.0",
     "typescript": "~2.6.2",
     "zone.js": "^0.8.19"
   },
@@ -59,5 +64,5 @@
   "engines": {
     "node": "8.11.1",
     "yarn": "1.6.0"
-    }
+  }
 }

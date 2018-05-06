@@ -1,24 +1,29 @@
 // Require Packages
-const express    = require("express"),
-      bodyParser = require("body-parser"),
-      mongoose   = require("mongoose");
+const express       = require("express"),
+      bodyParser    = require("body-parser"),
+      mongoose      = require("mongoose"),
+      passport      = require("passport"),
+      LocalStrategy = require("passport-local"),
+      flash         = require("connect-flash"),
+      favicon       = require("serve-favicon");
 
 // Require JS Model Exports
-let Task = require("./server/models/task");
+let Task = require("./server/models/task"),
+    User = require("./server/models/user");
 
 let seedDB = require("./seeds");
 
 // Require JS Controller Exports
 let taskRoutes  = require("./server/controllers/tasks"),
+    userRoutes  = require("./server/controllers/users"),
     indexRoutes = require("./server/controllers/index");
-
-let dbURL = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
-let httpStatus;
 
 // Set up App
 let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(flash());
+app.use(favicon(__dirname + '/src/favicon.ico'));
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE");
@@ -26,11 +31,26 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Passport Config
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next) {
+ res.locals.currentUser = req.user;
+ res.locals.error = req.flash("error");
+ res.locals.success = req.flash("success");
+ next();
+});
+
 // Route config
 app.use("/", indexRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("api/users", userRoutes);
 
-mongoose.connect(dbURL);
+mongoose.connect(config.database);
 
 // seedDB(); // Seed the database
 
