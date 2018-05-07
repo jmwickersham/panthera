@@ -5,7 +5,8 @@ const express       = require("express"),
       favicon       = require("serve-favicon"),
       logger        = require('morgan'),
       cookieParser  = require('cookie-parser'),
-      cors          = require('cors');
+      cors          = require('cors'),
+      http          = require('http');
 
 // Bring in mongoose data model
 require('./api/models/database');
@@ -18,6 +19,9 @@ let taskRoutes  = require("./api/routes/tasks"),
     userRoutes  = require("./api/routes/users"),
     indexRoutes = require("./api/routes/index");
 
+// Get port from environment and store in Express.
+let port = normalizePort(process.env.PORT || '3000');
+
 // Set up App
 let app = express();
 app.use(favicon(__dirname + '/client/src/favicon.ico'));
@@ -25,25 +29,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded( {extended: false} ));
 app.use(cookieParser());
 app.use(cors());
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Methods", "CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE");
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//   next();
-// });
+app.set('port', port);
 
 // Passport Config
 app.use(passport.initialize());
-
-// app.use(passport.session());
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
-
-// app.use(function(req, res, next) {
-//  res.locals.currentUser = req.user;
-//  next();
-// });
 
 // Route config
 app.use("/", indexRoutes);
@@ -52,7 +41,7 @@ app.use("/api/users", userRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -65,12 +54,15 @@ app.use(function (err, req, res, next) {
   }
 });
 
-let port = normalizePort(process.env.PORT || 3000);
+// Create HTTP server.
+let server = http.createServer(app);
 
-app.listen(port, function () {
-  console.log("Panthera server has started on port", port);
-});
+// Listen on provided port, on all network interfaces.
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
+// Normalize a port into a number, string, or false.
 function normalizePort(val) {
   let port = parseInt(val, 10);
 
@@ -86,3 +78,48 @@ function normalizePort(val) {
 
   return false;
 }
+
+// Event listener for HTTP server "error" event.
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  let bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(`${bind} requires elevated privileges`);
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(`${bind} is already in use`);
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+// Event listener for HTTP server "listening" event.
+function onListening() {
+  let addr = server.address();
+  let bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
+  console.log(`Panthera server listening on port ${bind}`);
+}
+
+// TO DO: Remove this code if I don't end up needing it
+// app.use(passport.session());
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+
+// app.use(function(req, res, next) {
+//  res.locals.currentUser = req.user;
+//  next();
+// });
+
+// app.listen(port, function () {
+//   console.log("Panthera server has started on port", port);
+// });
