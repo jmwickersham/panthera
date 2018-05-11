@@ -53,7 +53,7 @@ app.use(function (err, req, res, next) {
 });
 
 // Initialize app
-let server = app.listen(process.env.PORT || 3000, function () {
+let server = app.listen(process.env.PORT || 3000, process.env.IP || "localhost", function () {
   let port = server.address().port;
   console.log("Panthera server has started on port", port);
 });
