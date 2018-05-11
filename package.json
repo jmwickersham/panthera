@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "node app.js",
+    "server": "node server.js",
     "prod": "ng serve --env=prod",
     "dev": "ng serve --env=dev"
   },
