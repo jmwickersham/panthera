@@ -1,38 +1,33 @@
 const mongoose = require("mongoose"),
-// const bcrypt = require('bcrypt-nodejs');
-crypto = require('crypto'),
-jwt = require('jsonwebtoken');
+      crypto   = require('crypto'),
+      jwt      = require('jsonwebtoken');
 
-const UserSchema = new mongoose.Schema({
-    username: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    // password: {
-    //     type: String,
-    //     required: true
-    // },
-    first_name: String,
-    last_name: String,
-    hash: String,
-    salt: String
+const userSchema = new mongoose.Schema({
+      username: {
+          type: String,
+          unique: true,
+          required: true
+      },
+      first_name: String,
+      last_name: String,
+      hash: String,
+      salt: String
 },
 {
-    timestamps: true
+      timestamps: true
 });
 
-UserSchema.methods.setPassword = function(password) {
+userSchema.methods.setPassword = function(password) {
     this.salt = crypto.randomBytes(16).toString('hex');
     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
 };
 
-UserSchema.methods.validPassword = function(password) {
+userSchema.methods.validPassword = function(password) {
     let hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
     return this.hash === hash;
 };
 
-UserSchema.methods.generateJwt = function() {
+userSchema.methods.generateJwt = function() {
     let expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
 
@@ -45,34 +40,4 @@ UserSchema.methods.generateJwt = function() {
     }, "Super secret passphrase thing!"); // Change to different env variable later
 };
 
-// UserSchema.pre('save', function (next) {
-//     let user = this;
-//     if (this.isModified('password') || this.isNew) {
-//         bcrypt.genSalt(10, function (err, salt) {
-//             if (err) {
-//                 return next(err);
-//             }
-//             bcrypt.hash(user.password, salt, null, function (err, hash) {
-//                 if (err) {
-//                     return next(err);
-//                 }
-//                 user.password = hash;
-//                 next();
-//             });
-//         });
-//     } else {
-//         return next();
-//     }
-// });
-
-// UserSchema.methods.comparePassword = function (passw, cb) {
-//     bcrypt.compare(passw, this.password, function (err, isMatch) {
-//         if (err) {
-//             return cb(err);
-//         }
-//         cb(null, isMatch);
-//     });
-// };
-
-// module.exports = 
-mongoose.model("User", UserSchema);
+module.exports = mongoose.model("User", userSchema);

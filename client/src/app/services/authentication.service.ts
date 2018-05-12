@@ -1,3 +1,5 @@
+import { environment } from '../../environments/environment';
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -26,6 +28,7 @@ export interface TokenPayload {
 
 @Injectable()
 export class AuthenticationService {
+  private serverUrl = environment.serverUrl;
   private token: string;
 
   constructor(
@@ -72,10 +75,10 @@ export class AuthenticationService {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user);
+      base = this.http.post(`${this.serverUrl}/${type}`, user);
     } 
     else {
-      base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+      base = this.http.get(`${this.serverUrl}/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
     }
 
     const request = base.pipe(
@@ -91,6 +94,7 @@ export class AuthenticationService {
   }
 
   public register(user: TokenPayload): Observable<any> {
+    console.log('register', user);
     return this.request('post', 'register', user);
   }
 

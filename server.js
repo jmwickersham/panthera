@@ -13,12 +13,12 @@ require('./api/models/database');
 require('./api/config/passport');
 
 // Require JS Controller Exports
-let taskRoutes  = require("./api/routes/tasks"),
-    userRoutes  = require("./api/routes/users"),
-    indexRoutes = require("./api/routes/index");
+const taskRoutes  = require("./api/routes/tasks"),
+      userRoutes  = require("./api/routes/users"),
+      indexRoutes = require("./api/routes/index");
 
 // Create link to Angular build directory
-let distDir = __dirname + "/dist/";
+const distDir = __dirname + "/dist/";
 
 // Set up App
 let app = express();
