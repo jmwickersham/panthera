@@ -1,5 +1,3 @@
-// This is where the middleware functions will go
-
 var middlewareObj = {};
 
 /* middlewareObj.isLoggedIn = function(req, res, next) {

@@ -7,18 +7,20 @@
       <div class="ui inverted segment">
         <h2>Login</h2>
         <form class="ui inverted form" #loginForm="ngForm">
-          <div class="field">
-            <label>Username</label>
-            <input type="text" [(ngModel)]="loginData.username" name="username">
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password" [(ngModel)]="loginData.password" name="password">
+          <div class="two fields">
+            <div class="field">
+              <label>Username</label>
+              <input type="text" [(ngModel)]="credentials.username" name="username">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" [(ngModel)]="credentials.password" name="password">
+            </div>
           </div>
         </form>
       </div>
       <button (click)="login()" class="ui right floated primary button">Login</button>
       <button (click)="goBack()" class="ui right floated button">Go Back</button>
+      <p class="lead">Not registered? Please register <a routerLink="/register">here</a> instead.</p>
     </div>
   </div>
-  <p class="lead">Not registered? Please register <a routerLink="/register">here</a> instead.</p>

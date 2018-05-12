@@ -1,10 +1,11 @@
 // Require Packages
 const mongoose = require('mongoose');
 
+const seedDB = require("../../seeds");
+
 const dbURI = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
 
 let gracefulShutdown;
-// let seedDB = require("../../seeds");
 
 mongoose.connect(dbURI);
 

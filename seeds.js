@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
-var Task = require("./server/models/task");
+const mongoose = require("mongoose");
+const Task     = require("./api/models/task");
 
-var data = [
+let data = [
     {
         short_description: "Check out this cool new task!",
         description: "Next level crucifix single-origin coffee chartreuse blue bottle hell of messenger bag pinterest pitchfork flannel. Live-edge normcore celiac, biodiesel lyft kale chips salvia chartreuse cronut XOXO pitchfork trust fund microdosing. Umami disrupt glossier leggings ethical, cray wayfarers cardigan. Snackwave street art post-ironic try-hard truffaut pickled af."
@@ -13,7 +13,7 @@ var data = [
 ];
 
 function seedDB() {
-  // Remove all campgrounds
+  // Remove all tasks
   Task.remove({}, function (err) {
     if (err) {
       console.log(err);
