@@ -1,0 +1,32 @@
+.ui.footer.segment {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.masthead.segment {
+    min-height: 250px;
+    padding: 1em 0em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 1em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+}
+
+.ui.grid {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+}
+
+.ui.fixed.menu {
+    top: 5px;
+}
