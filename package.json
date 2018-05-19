@@ -4,16 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "start-old": "concurrently \"yarn server\" \"yarn prod\"",
-    "local": "concurrently \"yarn server\" \"yarn dev\"",
+    "postinstall": "ng build --aot -prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "local": "concurrently \"yarn server\" \"yarn dev\"",
     "server": "node server.js",
-    "prod": "ng serve --env=prod",
-    "dev": "ng serve --env=dev",
-    "postinstall": "ng build --aot -prod"
+    "dev": "ng serve --env=dev"
   },
   "private": true,
   "dependencies": {
