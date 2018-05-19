@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location }          from '@angular/common';
+
 import { AuthenticationService, UserDetails } from '../services/authentication.service';
 
 @Component({
@@ -9,7 +11,10 @@ import { AuthenticationService, UserDetails } from '../services/authentication.s
 export class ProfileComponent {
   details: UserDetails;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(
+    private auth: AuthenticationService,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.auth.profile().subscribe(user => {
@@ -19,4 +24,7 @@ export class ProfileComponent {
     });
   }
 
+  goBack(): void {
+    this.location.back();
+  }
 }

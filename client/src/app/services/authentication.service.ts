@@ -13,6 +13,8 @@ export interface UserDetails {
   last_name: string;
   exp: number;
   iat: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface TokenResponse {
