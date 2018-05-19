@@ -8,11 +8,11 @@
         </div>
         <div class="field">
           <label>First Name</label>
-          <input type="text" [ngModel]="details?.first_name" (ngModelChange)="details.first_name=$event" name="first_name">
+          <input type="text" [ngModel]="details?.first_name" (ngModelChange)="details.first_name=$event" name="first_name" disabled>
         </div>
         <div class="field">
             <label>Last Name</label>
-            <input type="text" [ngModel]="details?.last_name" (ngModelChange)="details.last_name=$event" name="last_name">
+            <input type="text" [ngModel]="details?.last_name" (ngModelChange)="details.last_name=$event" name="last_name" disabled>
           </div>
         <div class="two fields">
           <div class="field">
@@ -26,7 +26,6 @@
         </div>
       </form>
     </div>
-    <button (click)="updateUser()" class="ui right floated primary button">Update</button>
     <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
