@@ -1,12 +1,13 @@
 const mongoose = require('mongoose'),
       passport = require('passport');
 
-const User = mongoose.model('User');
+// Require JS Model Exports
+const User = require("../models/user");
 
-let sendJSONresponse = function(res, status, content) {
-    res.status(status);
-    res.json(content);
-};
+// let sendJSONresponse = function(res, status, content) {
+//     res.status(status);
+//     res.json(content);
+// };
 
 module.exports.register = function(req, res) {
     // if (!req.body.name || !req.body.email || !req.body.password) {
@@ -62,5 +63,5 @@ module.exports.login = function(req, res) {
             // If user is not found
             res.status(401).json(info);
         }
-    }) (res, res);
+    }) (req, res);
 };
