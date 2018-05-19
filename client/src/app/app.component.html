@@ -1,36 +1,60 @@
-<nav>
-  <div class="ui top attached menu">
+<div class="ui left inverted labeled icon inline vertical menu sidebar" id="sidenav">
+  <a class="item" routerLink="/" (click)="onToggle()">
+    <i class="home icon"></i>
+    Home
+  </a>
+  <a class="item" routerLink="/tasks" (click)="onToggle()">
+    <i class="list icon"></i>
+    Tasks
+  </a>
+  <a class="item" routerLink="/users" (click)="onToggle()">
+    <i class="user outline icon"></i>
+    Users
+  </a>
+  <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
+    <i class="github alternate icon"></i>
+    My GitHub
+  </a>
+</div>
+
+<div class="ui fixed inverted borderless menu">
+  <div class="ui container">
     <a class="item" (click)="onToggle()">
       <i class="sidebar icon"></i>
       Menu
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-        <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">Logged in as: {{ auth.getUserDetails()?.first_name }}</a>
-        <a *ngIf="auth.isLoggedIn()" class="item" (click)="auth.logout()">Logout</a>
-        <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/register">Register</a>
-        <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/login">Login</a>
-      </div>
+      <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">Logged in as: {{ auth.getUserDetails()?.first_name }}</a>
+      <a *ngIf="auth.isLoggedIn()" class="item ui inverted button" (click)="auth.logout()">Logout</a>
+      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="/register">Register</a>
+      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="/login">Login</a>
+    </div>
   </div>
-  <div class="ui left vertical inverted sidebar labeled icon menu" id="sidenav">
-    <a class="item" routerLink="/" (click)="onToggle()">
-      <i class="home icon"></i>
-      Home
-    </a>
-    <a class="item" routerLink="/tasks" (click)="onToggle()">
-      <i class="list icon"></i>
-      Tasks
-    </a>
-    <a class="item" routerLink="/users" (click)="onToggle()">
-      <i class="user outline icon"></i>
-      Users
-    </a>
-    <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
-      <i class="github alternate icon"></i>
-      My GitHub
-    </a>
-  </div>
-</nav>
+</div>
 
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui text container">
+      <h1 class="ui inverted header">
+        Panthera
+      </h1>
+      <h2>
+        Sub-Title Here
+      </h2>
+    </div>
+  </div>
+
+  <div class="ui grid">
+    <div class="sixteen wide column">
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+  </div>
+  </div>
+
+  <div class="ui inverted footer basic segment">
+    <div class="ui container">
+      <i class="heart outline icon"></i> 2018
+    </div>
+  </div>
+</div>
