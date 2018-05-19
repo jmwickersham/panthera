@@ -25,7 +25,7 @@ let app = express();
 app.use(favicon(__dirname + '/client/src/favicon.ico'));
 app.use(express.static(distDir));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded( {extended: false} ));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
 

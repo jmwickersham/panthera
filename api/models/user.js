@@ -4,9 +4,9 @@ const mongoose = require("mongoose"),
 
 const userSchema = new mongoose.Schema({
       username: {
-          type: String,
-          unique: true,
-          required: true
+        type: String,
+        unique: true,
+        required: true
       },
       first_name: String,
       last_name: String,
@@ -22,7 +22,7 @@ userSchema.methods.setPassword = function(password) {
     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
 };
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.verifyPassword = function(password) {
     let hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
     return this.hash === hash;
 };

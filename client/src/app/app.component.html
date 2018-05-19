@@ -6,7 +6,7 @@
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-        <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">{{ auth.getUserDetails()?.name }}</a>
+        <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">Logged in as: {{ auth.getUserDetails()?.first_name }}</a>
         <a *ngIf="auth.isLoggedIn()" class="item" (click)="auth.logout()">Logout</a>
         <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/register">Register</a>
         <a *ngIf="!auth.isLoggedIn()" class="item" routerLink="/login">Login</a>
