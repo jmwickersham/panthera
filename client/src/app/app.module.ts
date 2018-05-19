@@ -1,11 +1,12 @@
 import { environment } from '../environments/environment';
 
 // Modules
-import { NgModule }          from '@angular/core';
-import { BrowserModule }     from '@angular/platform-browser';
-import { FormsModule }       from '@angular/forms';
-import { HttpClientModule }  from '@angular/common/http';
-import { AppRoutingModule }  from './app-routing.module';
+import * as Raven                 from 'raven-js';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule }          from '@angular/platform-browser';
+import { FormsModule }            from '@angular/forms';
+import { HttpClientModule }       from '@angular/common/http';
+import { AppRoutingModule }       from './app-routing.module';
 
 // Components
 import { AppComponent }        from './app.component';
@@ -25,6 +26,16 @@ import { MessageService }        from './services/message.service';
 import { UserService }           from './services/user.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService }      from './services/auth-guard.service';
+
+Raven
+  .config('https://688f70971071467f95496cf225487ffc@sentry.io/1209803')
+  .install();
+
+export class RavenErrorHandler implements ErrorHandler {
+  handleError(err:any) : void {
+    Raven.captureException(err);
+  }
+}
 
 @NgModule({
   imports: [
@@ -50,7 +61,8 @@ import { AuthGuardService }      from './services/auth-guard.service';
     MessageService,
     UserService,
     AuthenticationService,
-    AuthGuardService
+    AuthGuardService,
+    { provide: ErrorHandler, useClass: RavenErrorHandler }
   ],
   bootstrap: [ AppComponent ]
 })
