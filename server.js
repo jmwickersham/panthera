@@ -73,16 +73,7 @@ app.get('/*', function(req, res) {
 });
 
 // Initialize app
-// let server = app.listen(process.env.PORT || 3000, process.env.IP || "localhost", function () {
   let server = app.listen(process.env.PORT || 3000, function () {
-    console.log('DEBUG: process.env.PORT', process.env.PORT);
-    console.log('DEBUG: process.env.IP', process.env.IP);
-  
-    setTimeout(() => {
-      console.log('DEBUG: process.env.PORT', process.env.PORT);
-      console.log('DEBUG: process.env.IP', process.env.IP);
-    }, 10000);
-  
     let port = server.address().port;
     console.log("Panthera server has started on port", port);
   });
