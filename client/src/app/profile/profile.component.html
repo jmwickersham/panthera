@@ -2,18 +2,30 @@
   <div class="sixteen wide column">
     <div class="ui inverted segment">
       <form class="ui inverted form" #userForm="ngForm">
-        <div class="field">
-          <label>Username</label>
-          <input type="text" [ngModel]="details?.username" (ngModelChange)="details.username=$event" name="username" disabled>
+        <div class="two fields">
+          <div class="field">
+            <label>Username</label>
+            <input type="text" [ngModel]="details?.username" (ngModelChange)="details.username=$event" name="username" disabled>
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" [ngModel]="details?.email" (ngModelChange)="details.email=$event" name="email" disabled>
+          </div>
         </div>
-        <div class="field">
-          <label>First Name</label>
-          <input type="text" [ngModel]="details?.first_name" (ngModelChange)="details.first_name=$event" name="first_name" disabled>
-        </div>
-        <div class="field">
+        <div class="two fields">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" [ngModel]="details?.first_name" (ngModelChange)="details.first_name=$event" name="first_name" disabled>
+          </div>
+          <div class="field">
             <label>Last Name</label>
             <input type="text" [ngModel]="details?.last_name" (ngModelChange)="details.last_name=$event" name="last_name" disabled>
           </div>
+        </div>
+        <div class="field">
+            <label>Profile Image URL</label>
+            <input type="text" [ngModel]="details?.imageURL" (ngModelChange)="details.imageURL=$event" name="imageURL" disabled>
+        </div>
         <div class="two fields">
           <div class="field">
             <label>Created</label>
