@@ -18,21 +18,19 @@ require('./api/models/database');
 require('./api/config/passport');
 
 // Require JS Controller Exports
-const taskRoutes  = require("./api/routes/tasks"),
-      userRoutes  = require("./api/routes/users"),
-      indexRoutes = require("./api/routes/index");
-
-// Create link to Angular build directory
-const distDir = __dirname + "/dist/";
+const taskRoutes    = require("./api/routes/tasks"),
+      userRoutes    = require("./api/routes/users"),
+      commentRoutes = require("./api/routes/comments"),
+      indexRoutes   = require("./api/routes/index");
 
 // Set up App
 let app = express();
 app.use(Raven.requestHandler());
 app.use(Raven.errorHandler());
 app.use(favicon(__dirname + '/client/src/favicon.ico'));
-app.use(express.static(distDir));
-app.use(bodyParser.json());
+app.use(express.static(__dirname + "/dist/")); // Create link to Angular build directory
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 
@@ -43,6 +41,7 @@ app.use(passport.initialize());
 app.use("/", indexRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/tasks/:id/comments", commentRoutes);
 
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {
