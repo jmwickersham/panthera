@@ -11,6 +11,8 @@ export interface UserDetails {
   username: string;
   first_name: string;
   last_name: string;
+  email: string;
+  imageURL: string;
   exp: number;
   iat: number;
   createdAt: string;
@@ -24,6 +26,8 @@ interface TokenResponse {
 export interface TokenPayload {
   username: string;
   password: string;
+  email?: string;
+  imageURL?: string;
   first_name?: string;
   last_name?: string;
 }

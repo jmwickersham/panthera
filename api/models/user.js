@@ -52,6 +52,8 @@ userSchema.methods.generateJwt = function() {
         username: this.username, 
         first_name: this.first_name,
         last_name: this.last_name,
+        email: this.email,
+        imageURL: this.imageURL,
         exp: parseInt(expiry.getTime() / 1000),
     }, "Super secret passphrase thing!"); // Change to different env variable later
 };

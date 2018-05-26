@@ -1,34 +1,45 @@
 <div class="ui grid container">
-    <div class="sixteen wide column">
-      <div class="ui inverted segment">
-        <form class="ui inverted form" #userForm="ngForm">
+  <div class="sixteen wide column">
+    <div class="ui inverted segment">
+      <form class="ui inverted form" #userForm="ngForm">
+        <div class="two fields">
           <div class="field">
             <label>Username</label>
             <input type="text" [ngModel]="user?.username" (ngModelChange)="user.username=$event" name="username" disabled>
           </div>
           <div class="field">
+            <label>Email</label>
+            <input type="email" [ngModel]="user?.email" (ngModelChange)="user.email=$event" name="email">
+          </div>
+        </div>
+        <div class="two fields">
+          <div class="field">
             <label>First Name</label>
             <input type="text" [ngModel]="user?.first_name" (ngModelChange)="user.first_name=$event" name="first_name">
           </div>
           <div class="field">
-              <label>Last Name</label>
-              <input type="text" [ngModel]="user?.last_name" (ngModelChange)="user.last_name=$event" name="last_name">
-            </div>
-          <div class="two fields">
-            <div class="field">
-              <label>Created</label>
-              <input type="text" [ngModel]="user?.createdAt | date:'medium':'-0700' " name="createdAt" disabled>
-            </div>
-            <div class="field">
-              <label>Updated</label>
-              <input type="text" [ngModel]="user?.updatedAt | date:'medium':'-0700' " name="updatedAt" disabled>
-            </div>
+            <label>Last Name</label>
+            <input type="text" [ngModel]="user?.last_name" (ngModelChange)="user.last_name=$event" name="last_name">
           </div>
-        </form>
-      </div>
-      <button *ngIf="user" (click)="updateUser()" class="ui right floated primary button">Update</button>
-      <button *ngIf="user" (click)="deleteUser()" class="ui right floated red button">Delete</button>  
-      <button (click)="goBack()" class="ui right floated button">Go Back</button>
+        </div>
+        <div class="field">
+          <label>Profile Image URL</label>
+          <input type="text" [ngModel]="user?.imageURL" (ngModelChange)="user.imageURL=$event" name="imageURL">
+        </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Created</label>
+            <input type="text" [ngModel]="user?.createdAt | date:'medium':'-0700' " name="createdAt" disabled>
+          </div>
+          <div class="field">
+            <label>Updated</label>
+            <input type="text" [ngModel]="user?.updatedAt | date:'medium':'-0700' " name="updatedAt" disabled>
+          </div>
+        </div>
+      </form>
     </div>
+    <button *ngIf="user" (click)="updateUser()" class="ui right floated primary button">Update</button>
+    <button *ngIf="user" (click)="deleteUser()" class="ui right floated red button">Delete</button>
+    <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
-  
+</div>
