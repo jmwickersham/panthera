@@ -3,18 +3,34 @@ const mongoose = require("mongoose"),
       jwt      = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-      username: {
+    username: {
         type: String,
         unique: true,
         required: true
-      },
-      first_name: String,
-      last_name: String,
-      hash: String,
-      salt: String
+    },
+    first_name: String,
+    last_name: String,
+    email: String,
+    imageURL: String,
+    created_by: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
+    updated_by: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
+    hash: String,
+    salt: String
 },
 {
-      timestamps: true
+    timestamps: true
 });
 
 userSchema.methods.setPassword = function(password) {
