@@ -47,5 +47,6 @@ process.on('SIGTERM', function() {
 // Models and Schemas
 require('../models/user');
 require('../models/task');
+require('../models/comment');
 
 // seedDB(); // Seed the database

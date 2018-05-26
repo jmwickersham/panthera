@@ -21,7 +21,7 @@ router.get("/", function (req, res, next) {
 
 // Show route - Shows more info about one task
 router.get("/:id", function (req, res, next) {
-    Task.findById(req.params.id, function (err, foundTask) {
+    Task.findById(req.params.id).populate("comments").exec(function (err, foundTask) {
         if (err) {
             console.log(err);
             httpStatus = 400;
@@ -37,7 +37,9 @@ router.get("/:id", function (req, res, next) {
 });
 
 // Create route - Add a new task to DB
+// TODO: Add Auth middleware to route
 router.post("/", function (req, res, next) {
+    // TODO: Add created by logged in user
     let newTask = {
         short_description: req.body.short_description,
         description: req.body.description
@@ -56,7 +58,16 @@ router.post("/", function (req, res, next) {
 });
 
 // Update route
+// TODO: Add Auth middleware to route
 router.put("/:id", function(req, res) {
+    // TODO: Create Object to push instead of directly pushing the body and add updated by logged in user (may need to tweak below code)
+    // let updatedTask = {
+    //     short_description: req.body.short_description,
+    //     description: req.body.description,
+    //     updated_by.id: req.user._id,
+    //     updated_by.username = req.user.username
+    // };
+
     Task.findByIdAndUpdate(req.params.id, req.body, function(err, updatedTask) {
         if (err) {
             console.log(err);
