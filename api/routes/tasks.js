@@ -21,7 +21,7 @@ router.get("/", function (req, res, next) {
 
 // Show route - Shows more info about one task
 router.get("/:id", function (req, res, next) {
-    Task.findById(req.params.id, function (err, foundTask) {
+    Task.findById(req.params.id).populate("comments").exec(function (err, foundTask) {
         if (err) {
             console.log(err);
             httpStatus = 400;
