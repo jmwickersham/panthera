@@ -4,4 +4,5 @@ export class Task {
     description: string;
     createdAt: string;
     updatedAt: string;
+    comments: Array<{}>;
 }
