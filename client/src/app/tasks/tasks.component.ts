@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Task } from './tasks';
 import { TaskService } from '../services/task.service';
 
+declare var jQuery: any;
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -15,6 +17,7 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.getTasks();
+    jQuery('table').tablesort();
   }
 
   getTasks(): void {

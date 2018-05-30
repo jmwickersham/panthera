@@ -33,6 +33,7 @@ export class TaskService {
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.taskUrl)
       .pipe(
+        map(tasks => tasks["data"]),
         tap(tasks => this.log(`fetched tasks`)),
         catchError(this.handleError('getTasks', []))
       );
