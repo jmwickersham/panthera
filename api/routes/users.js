@@ -7,11 +7,11 @@ let User = require("../models/user");
 
 // Routes
 router.get("/", function (req, res, next) {
-    let pageNo = parseInt(req.query.pageNo);
-    let size = parseInt(req.query.size);
+    let pageNumber = parseInt(req.query.pageNumber);
+    let pageSize = parseInt(req.query.pageSize);
     let query = {};
 
-    if (pageNo < 0 || pageNo === 0) {
+    if (pageNumber < 0 || pageNumber === 0) {
         response = {
             "error": true,
             "message": "invalid page number, should start with 1"
@@ -19,8 +19,8 @@ router.get("/", function (req, res, next) {
         return res.status().json(response);
     }
 
-    query.skip = size * (pageNo - 1);
-    query.limit = size;
+    query.skip = pageSize * (pageNumber - 1);
+    query.limit = pageSize;
 
     User.count({}, function (err, totalCount) {
         if (err) {
@@ -35,13 +35,14 @@ router.get("/", function (req, res, next) {
                 httpStatus = 400;
             } else {
                 httpStatus = 200;
-                let totalPages = Math.ceil(totalCount / size);
+                let totalPages = Math.ceil(totalCount / pageSize);
                 response = {
                     "data": allUsers,
                     metadata: {
-                        "currentPage": pageNo,
-                        "totalPages": totalPages,
-                        "size": size
+                        "totalItems": totalCount,
+                        "currentPage": pageNumber,
+                        "totalPages": totalPages,                        
+                        "pageSize": pageSize
                     }
                 };
             }
