@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute }           from '@angular/router';
 import { Location }                 from '@angular/common';
 
-import { User } from '../users/users';
+import { User }        from '../models/user.model';
 import { UserService } from '../services/user.service';
 
 @Component({

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute }           from '@angular/router';
 import { Location }                 from '@angular/common';
 
-import { Task } from '../tasks/tasks';
+import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 
 @Component({

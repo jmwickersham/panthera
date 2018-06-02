@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-//import { Task } from '../tasks/tasks'
 import { Task } from '../models/task.model';
 import { MessageService } from '../services/message.service';
 

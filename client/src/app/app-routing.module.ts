@@ -10,13 +10,13 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { LandingComponent } from './landing/landing.component';
 
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: '', redirectTo: '/landing', pathMatch: 'full' },
+  { path: 'landing', component: LandingComponent },
   { path: 'tasks', component: TasksComponent},
   { path: 'tasks/:id', component: TaskDetailComponent },
   { path: 'tasks/new', component: TaskDetailComponent },
