@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Task } from './tasks';
+import { Task }        from '../models/task.model';
 import { TaskService } from '../services/task.service';
 
 @Component({
@@ -20,6 +20,12 @@ export class TasksComponent implements OnInit {
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => this.tasks = tasks);
+  }
+
+  getNextPage(): void {
+    console.log('current page: ', this.tasks);
+    // this.taskService.getTasks()
+    // .subscribe(tasks => this.tasks = tasks);
   }
 
   add(short_description: string): void {
