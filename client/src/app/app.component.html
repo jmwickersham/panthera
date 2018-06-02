@@ -3,22 +3,40 @@
     <i class="home icon"></i>
     Home
   </a>
-  <a class="item" routerLink="/tasks" (click)="onToggle()">
-    <i class="list icon"></i>
-    Tasks
-  </a>
-  <a class="item" routerLink="/users" (click)="onToggle()">
+  <a class="item" routerLink="/" (click)="onToggle()">
     <i class="user outline icon"></i>
-    Users
+    About Me
   </a>
-  <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham" target="_blank">
-    <i class="github alternate icon"></i>
-    My GitHub
+  <a class="item" (click)="onToggle()" href="https://www.twitch.tv/fiercepanther" target="_blank">
+    <i class="twitch icon"></i>
+    Twitch
   </a>
-  <a class="item" (click)="onToggle()" href="https://trello.com/b/5jKOEPmU/panthera" target="_blank">
-    <i class="trello icon"></i>
-    Project Trello
-  </a>
+  <div class="item">
+    <div class="header">Site Owner Links</div>
+    <div class="menu">
+      <a class="item" routerLink="/tasks" (click)="onToggle()">
+        <i class="list icon"></i>
+        Tasks
+      </a>
+      <a class="item" routerLink="/users" (click)="onToggle()">
+        <i class="users icon"></i>
+        Users
+      </a>
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">Project Links</div>
+    <div class="menu">
+      <a class="item" (click)="onToggle()" href="https://github.com/jmwickersham/panthera" target="_blank">
+        <i class="github alternate icon"></i>
+        GitHub
+      </a>
+      <a class="item" (click)="onToggle()" href="https://trello.com/b/5jKOEPmU/panthera" target="_blank">
+        <i class="trello icon"></i>
+        Trello
+      </a>
+    </div>
+  </div>
 </div>
 
 <div class="ui fixed inverted borderless menu">
@@ -30,8 +48,8 @@
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
       <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">
-        Logged in as:&nbsp;&nbsp;<img *ngIf="auth.getUserDetails().imageURL" class="ui avatar image" [src]="auth.getUserDetails()?.imageURL">
-        {{ auth.getUserDetails()?.first_name }}
+        Logged in as:&nbsp;&nbsp;
+        <img *ngIf="auth.getUserDetails().imageURL" class="ui avatar image" [src]="auth.getUserDetails()?.imageURL"> {{ auth.getUserDetails()?.first_name }}
       </a>
       <a *ngIf="auth.isLoggedIn()" class="item ui inverted button" (click)="auth.logout()">Logout</a>
       <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="/register">Register</a>
@@ -47,16 +65,16 @@
         Welcome to Panthera
       </h1>
       <h2>
-        The Place to Get Your Act Together...
+        A Glimpse into Fiercepanther’s Den...
       </h2>
     </div>
   </div>
 
   <div class="ui grid">
     <div class="sixteen wide column">
-    <router-outlet></router-outlet>
-    <app-messages></app-messages>
-  </div>
+      <router-outlet></router-outlet>
+      <app-messages></app-messages>
+    </div>
   </div>
 
   <div class="ui inverted footer basic segment">
