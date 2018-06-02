@@ -6,6 +6,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule }          from '@angular/platform-browser';
 import { FormsModule }            from '@angular/forms';
 import { HttpClientModule }       from '@angular/common/http';
+import { MatTableModule, MatPaginatorModule }         from '@angular/material';
 import { AppRoutingModule }       from './app-routing.module';
 
 // Components
@@ -42,7 +43,9 @@ export class RavenErrorHandler implements ErrorHandler {
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   declarations: [
     AppComponent,

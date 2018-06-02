@@ -1,13 +1,14 @@
 import { environment } from '../../environments/environment';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Task } from '../tasks/tasks'
+//import { Task } from '../tasks/tasks'
+import { Task } from '../models/task.model';
 import { MessageService } from '../services/message.service';
 
 const httpOptions = {
@@ -30,9 +31,14 @@ export class TaskService {
   // GET Methods
 
   // GET tasks from the server 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.taskUrl)
-      .pipe(
+  getTasks(/*taskId:string, filter = '', sortOrder = 'asc', */pageNumber = 1, pageSize = 5): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskUrl, { params: new HttpParams()
+      // .set('id', taskId.toString())
+      // .set('filter', filter)
+      // .set('sortOrder', sortOrder)
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString())
+    }).pipe(
         map(tasks => tasks["data"]),
         tap(tasks => this.log(`fetched tasks`)),
         catchError(this.handleError('getTasks', []))
