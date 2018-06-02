@@ -1,13 +1,13 @@
 import { environment } from '../environments/environment';
 
 // Modules
-import * as Raven                 from 'raven-js';
-import { NgModule, ErrorHandler } from '@angular/core';
-import { BrowserModule }          from '@angular/platform-browser';
-import { FormsModule }            from '@angular/forms';
-import { HttpClientModule }       from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule }         from '@angular/material';
-import { AppRoutingModule }       from './app-routing.module';
+import * as Raven                             from 'raven-js';
+import { NgModule, ErrorHandler }             from '@angular/core';
+import { BrowserModule }                      from '@angular/platform-browser';
+import { FormsModule }                        from '@angular/forms';
+import { HttpClientModule }                   from '@angular/common/http';
+import { MatTableModule, MatPaginatorModule } from '@angular/material';
+import { AppRoutingModule }                   from './app-routing.module';
 
 // Components
 import { AppComponent }        from './app.component';
@@ -18,7 +18,7 @@ import { UsersComponent }      from './users/users.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { LoginComponent }      from './login/login.component';
 import { RegisterComponent }   from './register/register.component';
-import { DashboardComponent }  from './dashboard/dashboard.component';
+import { LandingComponent }    from './landing/landing.component';
 import { ProfileComponent }    from './profile/profile.component';
 
 // Services
@@ -56,7 +56,7 @@ export class RavenErrorHandler implements ErrorHandler {
     UserDetailComponent,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent,
+    LandingComponent,
     ProfileComponent
   ],
   providers: [
