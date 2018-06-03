@@ -7,7 +7,7 @@
     "ng": "ng",
     "config": "ts-node ./client/src/set-env.js",
     "start": "node server.js",
-    "postinstall": "yarn config -- --env=prod && ng build --aot -prod",
+    "postinstall": "yarn run config -- --env=prod && ng build --aot -prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
