@@ -24,8 +24,8 @@ export class TasksComponent implements OnInit {
 
   getNextPage(): void {
     console.log('current page: ', this.tasks);
-    // this.taskService.getTasks()
-    // .subscribe(tasks => this.tasks = tasks);
+    this.taskService.getTasks(2)
+    .subscribe(tasks => this.tasks = tasks);
   }
 
   add(short_description: string): void {

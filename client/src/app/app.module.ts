@@ -20,11 +20,13 @@ import { LoginComponent }      from './login/login.component';
 import { RegisterComponent }   from './register/register.component';
 import { LandingComponent }    from './landing/landing.component';
 import { ProfileComponent }    from './profile/profile.component';
+import { TwitchComponent }     from './twitch/twitch.component';
 
 // Services
-import { TaskService }           from './services/task.service';
 import { MessageService }        from './services/message.service';
+import { TaskService }           from './services/task.service';
 import { UserService }           from './services/user.service';
+import { TwitchService }         from './services/twitch.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService }      from './services/auth-guard.service';
 
@@ -57,12 +59,14 @@ export class RavenErrorHandler implements ErrorHandler {
     LoginComponent,
     RegisterComponent,
     LandingComponent,
-    ProfileComponent
+    ProfileComponent,
+    TwitchComponent
   ],
   providers: [
-    TaskService,
     MessageService,
+    TaskService,
     UserService,
+    TwitchService,
     AuthenticationService,
     AuthGuardService,
     { provide: ErrorHandler, useClass: RavenErrorHandler }
