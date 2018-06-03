@@ -28,7 +28,7 @@ export class UsersComponent implements OnInit {
       });
   }
 
-  getUserkPage(page): void {
+  getUserPage(page): void {
     if (page * 1 < 1) {
       page = 1;
     }
