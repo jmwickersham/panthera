@@ -10,6 +10,8 @@ import { TaskService } from '../services/task.service';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[];
+  totalPages: number;
+  currentPage: number;
   
   constructor(private taskService: TaskService) { }
 
@@ -19,13 +21,25 @@ export class TasksComponent implements OnInit {
 
   getTasks(): void {
     this.taskService.getTasks()
-      .subscribe(tasks => this.tasks = tasks);
+      .subscribe(tasks => {
+        this.currentPage = tasks["metadata"].currentPage;
+        this.totalPages = tasks["metadata"].totalPages;
+        this.tasks = tasks["data"]
+      });
   }
 
-  getNextPage(): void {
-    console.log('current page: ', this.tasks);
-    this.taskService.getTasks(2)
-    .subscribe(tasks => this.tasks = tasks);
+  getTaskPage(page): void {
+    if (page * 1 < 1) {
+      page = 1;
+    }
+    else if (page > this.totalPages) {
+      page = this.totalPages;
+    }
+    this.currentPage = page;
+    this.taskService.getTasks(page)
+    .subscribe(tasks => {
+      this.tasks = tasks["data"]
+    });
   }
 
   add(short_description: string): void {
