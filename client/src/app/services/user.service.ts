@@ -1,7 +1,7 @@
 import { environment } from '../../environments/environment';
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -31,10 +31,12 @@ export class UserService {
   // GET Methods
 
   // GET users from the server 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.userUrl)
-      .pipe(
-        map(users => users["data"]),
+  getUsers(pageNumber = 1, pageSize = 5): Observable<User[]> {
+    return this.http.get<User[]>(this.userUrl, { params: new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString())
+    }).pipe(
+        map(users => users),
         tap(users => this.log(`fetched users`)),
         catchError(this.handleError('getUsers', []))
       );
