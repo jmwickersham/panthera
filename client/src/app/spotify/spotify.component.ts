@@ -9,20 +9,35 @@ import { SpotifyService } from '../services/integrations/spotify.service';
 })
 export class SpotifyComponent implements OnInit {
   spotifyUser: {};
-  spotifyAuth: {};
-  currentlyStreaming: boolean;
+  mySpotifyInfo: {};
+  mySpotifyCurrentlyPlaying: {};
+  currentlyPlaying: boolean;
 
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit() {
-    this.auth();
+    this.getMyInfo();
+    this.getMyCurrentlyPlaying();
   }
 
-  auth(): void {
-    this.spotifyService.authorize()
-    .subscribe(spotifyAuth => {
-      console.log(spotifyAuth);
-      this.spotifyAuth = spotifyAuth;
+  getMyInfo(): void {
+    this.spotifyService.getMyInfo()
+    .subscribe(mySpotifyInfo => {
+      this.mySpotifyInfo = mySpotifyInfo;
+    })
+  }
+  
+  getMyCurrentlyPlaying(): void {
+    this.spotifyService.getMyCurrentlyPlaying()
+    .subscribe(mySpotifyCurrentlyPlaying => {
+      console.log('spotify:', mySpotifyCurrentlyPlaying);
+      if (mySpotifyCurrentlyPlaying["is_playing"] == true) {
+        this.currentlyPlaying = true;
+      }
+      else {
+        this.currentlyPlaying = false;
+      }
+      this.mySpotifyCurrentlyPlaying = mySpotifyCurrentlyPlaying;
     })
   }
 }

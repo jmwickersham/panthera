@@ -1,32 +1,37 @@
 <h3><i class="spotify icon"></i>Spotify</h3>
-<div *ngIf="!spotifyUser" class="ui card">
+<div *ngIf="!mySpotifyInfo" class="ui card">
   <div class="content">
     There was a problem loading this Spotify account.
   </div>
 </div>
-<div *ngIf="spotifyUser" class="ui card">
-  <a class="image" href="" target="_blank">
-    <!-- <img src="{{ spotifyUser }}"> -->
+<div *ngIf="mySpotifyInfo" class="ui card">
+  <a class="image" href="{{ mySpotifyInfo.href }}" target="_blank">
+    <img src="{{ mySpotifyInfo.images[0].url }}">
   </a>
   <div class="content">
-    <div class="header">{{ spotifyUser | uppercase }}</div>
-    <div *ngIf="currentlyStreaming" class="meta">
-      Currently streaming!
+    <div class="header">{{ mySpotifyInfo.display_name | uppercase }}</div>
+    <div *ngIf="currentlyPlaying" class="meta">
+      Currently Listening!
     </div>
-    <div *ngIf="!currentlyStreaming" class="meta">
-      Currently offline
+    <div *ngIf="!currentlyPlaying" class="meta">
+      Currently Offline
     </div>
-    <div class="description">
-      {{ spotifyUser }}
+    <div *ngIf="currentlyPlaying" class="description">
+      <a href="{{ mySpotifyCurrentlyPlaying.item.href }}" target="_blank">
+        <img class="ui small image" src="{{ mySpotifyCurrentlyPlaying.item.album.images[0].url }}">
+      </a>
+      <div><strong>Artist:</strong> {{ mySpotifyCurrentlyPlaying.item.artists[0].name }}</div>
+      <div><strong>Album:</strong> {{ mySpotifyCurrentlyPlaying.item.album.name }}</div>
+      <div><strong>Track:</strong> {{ mySpotifyCurrentlyPlaying.item.name }}</div>
     </div>
   </div>
   <div class="extra content">
     <span>
       <i class="users icon"></i>
-      View Count
+      Followers
     </span>
     <span class="right floated">
-      {{ spotifyUser }}
+      {{ mySpotifyInfo.followers.total }}
     </span>
   </div>
 </div>
