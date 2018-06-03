@@ -20,6 +20,7 @@ import { LoginComponent }      from './login/login.component';
 import { RegisterComponent }   from './register/register.component';
 import { LandingComponent }    from './landing/landing.component';
 import { ProfileComponent }    from './profile/profile.component';
+import { SpotifyComponent }    from './spotify/spotify.component';
 import { SteamComponent }      from './steam/steam.component';
 import { TwitchComponent }     from './twitch/twitch.component';
 
@@ -27,8 +28,9 @@ import { TwitchComponent }     from './twitch/twitch.component';
 import { MessageService }        from './services/message.service';
 import { TaskService }           from './services/task.service';
 import { UserService }           from './services/user.service';
-import { SteamService }          from './services/steam.service';
-import { TwitchService }         from './services/twitch.service';
+import { SteamService }          from './services/integrations/steam.service';
+import { SpotifyService }        from './services/integrations/spotify.service';
+import { TwitchService }         from './services/integrations/twitch.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService }      from './services/auth-guard.service';
 
@@ -64,12 +66,14 @@ export class RavenErrorHandler implements ErrorHandler {
     LandingComponent,
     ProfileComponent,
     TwitchComponent,
-    SteamComponent
+    SteamComponent,
+    SpotifyComponent
   ],
   providers: [
     MessageService,
     TaskService,
     UserService,
+    SpotifyService,
     SteamService,
     TwitchService,
     AuthenticationService,

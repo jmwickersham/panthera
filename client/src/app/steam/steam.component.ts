@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SteamService } from '../services/steam.service';
+import { SteamService } from '../services/integrations/steam.service';
 
 @Component({
   selector: 'app-steam',
@@ -60,7 +60,6 @@ export class SteamComponent implements OnInit {
   getRecentGames(): void {
     this.steamService.getRecentGames()
       .subscribe(steamRecentGames => {
-        console.log('steamRecentGames', steamRecentGames);
         this.steamRecentGames = steamRecentGames;
       });
   }

@@ -16,6 +16,10 @@ export const environment = {
   },
   steam: {
     key: "${process.env.STEAM_KEY}"
+  },
+  spotify: {
+    clientID: "${process.env.SPOTIFY_CLIENT_ID}",
+    clientSecret: "${process.env.SPOTIFY_CLIENT_SECRET}"
   }
 };
 `

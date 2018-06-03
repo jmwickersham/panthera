@@ -6,5 +6,9 @@ export const environment = {
   },
   steam: {
     key: ""
+  },
+  spotify: {
+    clientID: "",
+    clientSecret: ""
   }
 };

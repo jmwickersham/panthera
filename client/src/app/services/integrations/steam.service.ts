@@ -1,4 +1,4 @@
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from '../services/message.service';
+import { MessageService } from '../../services/message.service';
 
 const steamKey = environment.steam.key;
 
@@ -80,9 +80,8 @@ export class SteamService {
     };
   }
 
-  // Log a TaskService message with the MessageService
+  // Log a SteamService message with the MessageService
   private log(message: string) {
-    this.messageService.add('TaskService: ' + message);
+    this.messageService.add('SteamService: ' + message);
   }
-
 }

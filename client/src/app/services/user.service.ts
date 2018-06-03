@@ -128,8 +128,8 @@ export class UserService {
     };
   }
 
-  // Log a TaskService message with the MessageService
+  // Log a UserService message with the MessageService
   private log(message: string) {
-    this.messageService.add('TaskService: ' + message);
+    this.messageService.add('UserService: ' + message);
   }
 }
