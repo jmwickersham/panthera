@@ -10,15 +10,12 @@ import { SpotifyService } from '../services/integrations/spotify.service';
 export class SpotifyComponent implements OnInit {
   spotifyUser: {};
   spotifyAuth: {};
-  // twitchStream: {};
-  // currentlyStreaming: boolean;
+  currentlyStreaming: boolean;
 
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit() {
     this.auth();
-    // this.getUser();
-    // this.getStream();
   }
 
   auth(): void {
@@ -28,24 +25,4 @@ export class SpotifyComponent implements OnInit {
       this.spotifyAuth = spotifyAuth;
     })
   }
-
-  // getUser(): void {
-  //   this.twitchService.getUser()
-  //     .subscribe(twitchUsers => {
-  //       this.twitchUser = twitchUsers[0]
-  //     });
-  // }
-
-  // getStream(): void {
-  //   this.twitchService.getStream()
-  //     .subscribe(twitchStreams => {
-  //       if (twitchStreams.length != 0) {
-  //         this.currentlyStreaming = true;
-  //       }
-  //       else {
-  //         this.currentlyStreaming = false;
-  //       }
-  //       this.twitchStream = twitchStreams[0];
-  //     });
-  // }
 }
