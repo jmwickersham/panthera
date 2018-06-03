@@ -3,5 +3,8 @@ export const environment = {
   serverUrl: "https://panthera.herokuapp.com",
   twitch: {
     clientID: ""
+  },
+  steam: {
+    key: ""
   }
 };

@@ -1,0 +1,34 @@
+<h3><i class="steam icon"></i>Steam</h3>
+<div *ngIf="!steamUser" class="ui card">
+  <div class="content">
+    There was a problem loading this Steam account.
+  </div>
+</div>
+<div *ngIf="steamUser" class="ui card">
+  <a class="image" href="{{ steamUser.profileurl }}" target="_blank">
+    <img src="{{ steamUser.avatarfull }}">
+  </a>
+  <div class="content">
+    <div class="header">{{ steamUser.personaname | uppercase }}</div>
+    <div class="meta">
+      {{ status }}
+    </div>
+    <div class="description">
+      Recent Games:
+      <ul>
+        <li *ngFor="let game of steamRecentGames.games">
+          {{ game.name }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="extra content">
+    <span>
+      <i class="gamepad icon"></i>
+      Games Owned
+    </span>
+    <span class="right floated">
+      {{ steamGames.game_count }}
+    </span>
+  </div>
+</div>

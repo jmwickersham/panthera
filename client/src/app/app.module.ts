@@ -20,15 +20,18 @@ import { LoginComponent }      from './login/login.component';
 import { RegisterComponent }   from './register/register.component';
 import { LandingComponent }    from './landing/landing.component';
 import { ProfileComponent }    from './profile/profile.component';
+import { SteamComponent }      from './steam/steam.component';
 import { TwitchComponent }     from './twitch/twitch.component';
 
 // Services
 import { MessageService }        from './services/message.service';
 import { TaskService }           from './services/task.service';
 import { UserService }           from './services/user.service';
+import { SteamService }          from './services/steam.service';
 import { TwitchService }         from './services/twitch.service';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService }      from './services/auth-guard.service';
+
 
 Raven
   .config('https://688f70971071467f95496cf225487ffc@sentry.io/1209803')
@@ -60,12 +63,14 @@ export class RavenErrorHandler implements ErrorHandler {
     RegisterComponent,
     LandingComponent,
     ProfileComponent,
-    TwitchComponent
+    TwitchComponent,
+    SteamComponent
   ],
   providers: [
     MessageService,
     TaskService,
     UserService,
+    SteamService,
     TwitchService,
     AuthenticationService,
     AuthGuardService,

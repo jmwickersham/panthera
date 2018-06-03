@@ -13,6 +13,9 @@ export const environment = {
   serverUrl: "${process.env.SERVERURL}",
   twitch: {
     clientID: "${process.env.TWITCH_CLIENT_ID}"
+  },
+  steam: {
+    key: "${process.env.STEAM_KEY}"
   }
 };
 `
