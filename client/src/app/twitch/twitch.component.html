@@ -1,5 +1,10 @@
 <h3><i class="twitch icon"></i>Twitch</h3>
-<div class="ui card">
+<div *ngIf="!twitchUser" class="ui card">
+  <div class="content">
+    There was a problem loading this Twitch account.
+  </div>
+</div>
+<div *ngIf="twitchUser" class="ui card">
   <a class="image" href="https://twitch.tv/{{ twitchUser.display_name }}" target="_blank">
     <img src="{{ twitchUser.profile_image_url }}">
   </a>
