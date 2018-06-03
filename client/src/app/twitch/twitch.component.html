@@ -1,0 +1,12 @@
+<h3>Twitch</h3>
+<div>
+  <a href="https://www.twitch.tv/{{twitchUser.display_name}}">{{ twitchUser.display_name | uppercase }}</a>
+</div>
+
+<div *ngIf="currentlyStreaming">
+  Currently streaming!
+</div>
+
+<div *ngIf="!currentlyStreaming">
+    Currently offline
+</div>

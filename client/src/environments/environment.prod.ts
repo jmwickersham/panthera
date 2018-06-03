@@ -1,4 +1,7 @@
 export const environment = {
   production: true,
-  serverUrl: "https://panthera.herokuapp.com"
+  serverUrl: "https://panthera.herokuapp.com",
+  twitch: {
+    clientID: ""
+  }
 };
