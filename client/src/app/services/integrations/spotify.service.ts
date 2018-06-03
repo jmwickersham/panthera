@@ -10,44 +10,39 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../../services/message.service';
 
 const redirectUrl = environment.serverUrl;
-const spotifyClientID = environment.spotify.clientID;
-// const headers = new HttpHeaders().set('Client-ID', spotifyClientID);
+const spotifyAuth = environment.spotify.authorization;
+const headers = new HttpHeaders().set('Authorization', spotifyAuth);
 
 @Injectable()
 export class SpotifyService {
-  private spotifyUrl = 'https://accounts.spotify.com';
+  private spotifyUrl = 'https://api.spotify.com';
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  // GET Methods
-  authorize() {
-    return this.http.get<any[]>(this.spotifyUrl + '/authorize', {
-      params: new HttpParams()
-        .set('client_id', spotifyClientID)
-        .set('response_type', 'code')
-        .set('scope', 'user-read-currently-playing user-read-playback-state user-read-recently-played user-top-read')
-        .set('redirect_uri', redirectUrl)
+  // GET my Spotify info from the server 
+  getMyInfo() {
+    return this.http.get<any[]>(this.spotifyUrl + '/v1/me', {
+      headers: headers
     }).pipe(
-      map(spotifyAuth => spotifyAuth),
-      tap(spotifyAuth => this.log(`fetched spotifyAuth`)),
-      catchError(this.handleError('spotifyAuth', []))
+      map(mySpotifyInfo => mySpotifyInfo),
+      tap(mySpotifyInfo => this.log(`fetched mySpotifyInfo`)),
+      catchError(this.handleError('getMyInfo', []))
     );
   }
 
-  // GET tasks from the server 
-  getUser(id = '76561198031523398') {
-    return this.http.get<any[]>(this.spotifyUrl + '/ISteamUser/GetPlayerSummaries/v2', {
-      params: new HttpParams()
-        .set('steamids', id.toString())
-    }).pipe(
-      map(steamUser => steamUser["response"]),
-      tap(steamUser => this.log(`fetched steamUser`)),
-      catchError(this.handleError('getUser', []))
-    );
-  }
+    // GET my Spotify info from the server 
+    getMyCurrentlyPlaying() {
+      return this.http.get<any[]>(this.spotifyUrl + '/v1/me/player/currently-playing', {
+        headers: headers
+      }).pipe(
+        map(mySpotifyCurrentlyPlaying => mySpotifyCurrentlyPlaying),
+        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyInfo`)),
+        catchError(this.handleError('getMyCurrentlyPlaying', []))
+      );
+    }
 
   // Error Handling
 

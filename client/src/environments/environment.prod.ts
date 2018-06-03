@@ -9,6 +9,7 @@ export const environment = {
   },
   spotify: {
     clientID: "",
-    clientSecret: ""
+    clientSecret: "",
+    authorization: ""
   }
 };
