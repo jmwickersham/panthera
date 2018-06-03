@@ -26,14 +26,14 @@
         <tr>
           <th colspan="5">
             <div class="ui right floated pagination menu">
-              <a class="icon item">
+              <a class="icon item" (click)="getTaskPage(currentPage - 1)">
                 <i class="left chevron icon"></i>
               </a>
-              <a class="item" (click)="getNextPage()">1</a>
-              <a class="item" (click)="getNextPage()">2</a>
-              <a class="item">3</a>
-              <a class="item">4</a>
-              <a class="icon item" (click)="getNextPage()">
+              <a class="item" (click)="getTaskPage(currentPage)">{{ currentPage }}</a>
+              <a class="item" (click)="getTaskPage(currentPage + 1)">{{ currentPage + 1}}</a>
+              <a class="item" (click)="getTaskPage(currentPage + 2)">{{ currentPage + 2}}</a>
+              <a class="item" (click)="getTaskPage(currentPage + 3)">{{ currentPage + 3}}</a>
+              <a class="icon item" (click)="getTaskPage(currentPage + 1)">
                 <i class="right chevron icon"></i>
               </a>
             </div>

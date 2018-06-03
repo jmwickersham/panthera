@@ -30,15 +30,12 @@ export class TaskService {
   // GET Methods
 
   // GET tasks from the server 
-  getTasks(/*taskId:string, filter = '', sortOrder = 'asc', */pageNumber = 1, pageSize = 5): Observable<Task[]> {
+  getTasks(pageNumber = 1, pageSize = 5): Observable<Task[]> {
     return this.http.get<Task[]>(this.taskUrl, { params: new HttpParams()
-      // .set('id', taskId.toString())
-      // .set('filter', filter)
-      // .set('sortOrder', sortOrder)
       .set('pageNumber', pageNumber.toString())
       .set('pageSize', pageSize.toString())
     }).pipe(
-        map(tasks => tasks["data"]),
+        map(tasks => tasks),
         tap(tasks => this.log(`fetched tasks`)),
         catchError(this.handleError('getTasks', []))
       );

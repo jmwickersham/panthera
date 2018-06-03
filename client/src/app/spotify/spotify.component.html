@@ -1,0 +1,32 @@
+<h3><i class="spotify icon"></i>Spotify</h3>
+<div *ngIf="!twitchUser" class="ui card">
+  <div class="content">
+    There was a problem loading this Spotify account.
+  </div>
+</div>
+<div *ngIf="twitchUser" class="ui card">
+  <a class="image" href="https://twitch.tv/{{ twitchUser.display_name }}" target="_blank">
+    <img src="{{ twitchUser.profile_image_url }}">
+  </a>
+  <div class="content">
+    <div class="header">{{ twitchUser.display_name | uppercase }}</div>
+    <div *ngIf="currentlyStreaming" class="meta">
+      Currently streaming!
+    </div>
+    <div *ngIf="!currentlyStreaming" class="meta">
+      Currently offline
+    </div>
+    <div class="description">
+      {{ twitchUser.description }}
+    </div>
+  </div>
+  <div class="extra content">
+    <span>
+      <i class="users icon"></i>
+      View Count
+    </span>
+    <span class="right floated">
+      {{ twitchUser.view_count }}
+    </span>
+  </div>
+</div>
