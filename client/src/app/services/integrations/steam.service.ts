@@ -13,7 +13,7 @@ const steamKey = environment.steam.key;
 
 @Injectable()
 export class SteamService {
-  private steamUrl = 'http://api.steampowered.com';
+  private steamUrl = 'https://api.steampowered.com';
 
   constructor(
     private http: HttpClient,
