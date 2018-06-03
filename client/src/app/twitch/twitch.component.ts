@@ -9,7 +9,7 @@ import { TwitchService } from '../services/twitch.service';
 })
 export class TwitchComponent implements OnInit {
   twitchUser: {};
-  twitchStream: any[] = [];
+  twitchStream: {};
   currentlyStreaming: boolean;
 
   constructor(private twitchService: TwitchService) { }
@@ -17,13 +17,11 @@ export class TwitchComponent implements OnInit {
   ngOnInit() {
     this.getUser();
     this.getStream();
-    this.currentlyStreaming = this.checkStream();
   }
 
   getUser(): void {
     this.twitchService.getUser()
       .subscribe(twitchUsers => {
-        console.log(twitchUsers);
         this.twitchUser = twitchUsers[0]
       });
   }
@@ -31,18 +29,13 @@ export class TwitchComponent implements OnInit {
   getStream(): void {
     this.twitchService.getStream()
       .subscribe(twitchStreams => {
-        console.log(twitchStreams);
-        this.twitchStream = twitchStreams[0]
+        if (twitchStreams.length != 0) {
+          this.currentlyStreaming = true;
+        }
+        else {
+          this.currentlyStreaming = false;
+        }
+        this.twitchStream = twitchStreams[0];
       });
-  }
-
-  checkStream() {
-    console.log(this.twitchStream["length"])
-    if (this.twitchStream["length"] != 0) {
-      return true;
-    }
-    else {
-      return false;
-    }
   }
 }
