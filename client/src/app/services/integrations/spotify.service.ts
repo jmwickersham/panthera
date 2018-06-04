@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../../services/message.service';
 
 const redirectUrl = environment.serverUrl;
-const spotifyAuth = environment.spotify.authorization;
+const spotifyAuth = environment.spotify.authorization; // TODO Generate this using the client ID and Secret?
 const headers = new HttpHeaders().set('Authorization', spotifyAuth);
 
 @Injectable()
@@ -39,7 +39,7 @@ export class SpotifyService {
         headers: headers
       }).pipe(
         map(mySpotifyCurrentlyPlaying => mySpotifyCurrentlyPlaying),
-        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyInfo`)),
+        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyCurrentlyPlaying`)),
         catchError(this.handleError('getMyCurrentlyPlaying', []))
       );
     }
