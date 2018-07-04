@@ -25,7 +25,7 @@ export class SteamService {
         .set('id', id.toString())
     }).pipe(
          map(steamUser => steamUser),
-         tap(steamUser => this.log(`fetched steamUser`)),
+         tap(steamUser => this.log(`fetched steamUser: ${steamUser}`)),
          catchError(this.handleError('getUser', []))
     );
   }
@@ -36,7 +36,7 @@ export class SteamService {
       .set('id', id.toString())
     }).pipe(
         map(steamGames => steamGames),
-        tap(steamGames => this.log(`fetched steamGames`)),
+        tap(steamGames => this.log(`fetched steamGames: ${steamGames}`)),
         catchError(this.handleError('getOwnedGames', []))
       );
   }
@@ -47,7 +47,7 @@ export class SteamService {
       .set('id', id.toString())
     }).pipe(
         map(steamRecentGames => steamRecentGames),
-        tap(steamRecentGames => this.log(`fetched steamRecentGames`)),
+        tap(steamRecentGames => this.log(`fetched steamRecentGames: ${steamRecentGames}`)),
         catchError(this.handleError('getRecentGames', []))
       );
   }

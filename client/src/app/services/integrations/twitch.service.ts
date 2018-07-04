@@ -24,7 +24,7 @@ export class TwitchService {
       params: new HttpParams().set('id', id.toString())
     }).pipe(
         map(twitchUser => twitchUser),
-        tap(twitchUser => this.log(`fetched twitchUser`)),
+        tap(twitchUser => this.log(`fetched twitchUser: ${twitchUser}`)),
         catchError(this.handleError('getUser', []))
       );
   }
@@ -34,7 +34,7 @@ export class TwitchService {
         params: new HttpParams().set('id', id.toString())
     }).pipe(
         map(twitchStream => twitchStream),
-        tap(twitchStream => this.log(`fetched twitchStream`)),
+        tap(twitchStream => this.log(`fetched twitchStream: ${twitchStream}`)),
         catchError(this.handleError('getStream', []))
       );
   }

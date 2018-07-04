@@ -20,21 +20,21 @@ export class SpotifyService {
 
 
   // GET my Spotify info from the server 
-  getMyInfo(token: string) {
+  getMyInfo() {
     return this.http.get<any[]>(this.spotifyUrl + '/myInfo')
     .pipe(
       map(mySpotifyInfo => mySpotifyInfo),
-      tap(mySpotifyInfo => this.log(`fetched mySpotifyInfo`)),
+      tap(mySpotifyInfo => this.log(`fetched mySpotifyInfo: ${mySpotifyInfo}`)),
       catchError(this.handleError('getMyInfo', []))
     );
   }
 
     // GET my Spotify info from the server 
-    getMyCurrentlyPlaying(token: string) {
+    getMyCurrentlyPlaying() {
       return this.http.get<any[]>(this.spotifyUrl + '/currentlyPlaying')
       .pipe(
         map(mySpotifyCurrentlyPlaying => mySpotifyCurrentlyPlaying),
-        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyCurrentlyPlaying`)),
+        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyCurrentlyPlaying: ${mySpotifyCurrentlyPlaying}`)),
         catchError(this.handleError('getMyCurrentlyPlaying', []))
       );
     }
