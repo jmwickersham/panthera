@@ -28,14 +28,14 @@ export class TwitchComponent implements OnInit {
 
   getStream(): void {
     this.twitchService.getStream()
-      .subscribe(twitchStreams => {
-        if (twitchStreams.length != 0) {
+      .subscribe(twitchStream => {
+        if (twitchStream.length != 0) {
           this.currentlyStreaming = true;
         }
         else {
           this.currentlyStreaming = false;
         }
-        this.twitchStream = twitchStreams[0];
+        this.twitchStream = twitchStream[0];
       });
   }
 }

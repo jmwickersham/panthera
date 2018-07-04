@@ -5,17 +5,16 @@
   "main": "server.js",
   "scripts": {
     "ng": "ng",
-    "config": "ts-node ./client/src/set-env.js",
     "start": "node server.js",
-    "postinstall": "yarn run config -- --env=prod && ng build --aot -prod",
+    "postinstall": "ng build --aot -prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "localConcurrent": "concurrently \"yarn server\" \"yarn local\"",
     "server": "node server.js",
-    "dev": "yarn run config -- --env=dev && ng serve --env=dev",
-    "local": "yarn run config -- --env=local && ng serve --env=local"
+    "dev": "ng serve --env=dev",
+    "local": "ng serve --env=local"
   },
   "private": true,
   "dependencies": {

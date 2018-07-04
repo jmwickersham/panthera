@@ -1,4 +1,5 @@
 // Require Packages
+require('dotenv').config()
 const express       = require("express"),
       bodyParser    = require("body-parser"),
       path          = require("path"),
@@ -21,7 +22,10 @@ require('./api/config/passport');
 const taskRoutes    = require("./api/routes/tasks"),
       userRoutes    = require("./api/routes/users"),
       commentRoutes = require("./api/routes/comments"),
-      indexRoutes   = require("./api/routes/index");
+      indexRoutes   = require("./api/routes/index"),
+      steamRoutes   = require("./api/routes/steam"),
+      spotifyRoutes = require("./api/routes/spotify"),
+      twitchRoutes  = require("./api/routes/twitch");
 
 // Set up App
 let app = express();
@@ -42,6 +46,9 @@ app.use("/", indexRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks/:id/comments", commentRoutes);
+app.use("/api/steam", steamRoutes);
+app.use("/api/spotify", spotifyRoutes);
+app.use("/api/twitch", twitchRoutes);
 
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {

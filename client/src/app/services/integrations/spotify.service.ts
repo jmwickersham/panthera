@@ -9,24 +9,20 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../services/message.service';
 
-const redirectUrl = environment.serverUrl;
-const spotifyAuth = environment.spotify.authorization; // TODO Generate this using the client ID and Secret?
-const headers = new HttpHeaders().set('Authorization', spotifyAuth);
-
 @Injectable()
 export class SpotifyService {
-  private spotifyUrl = 'https://api.spotify.com';
+  private spotifyUrl = environment.serverUrl + '/api/spotify';
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
+
   // GET my Spotify info from the server 
-  getMyInfo() {
-    return this.http.get<any[]>(this.spotifyUrl + '/v1/me', {
-      headers: headers
-    }).pipe(
+  getMyInfo(token: string) {
+    return this.http.get<any[]>(this.spotifyUrl + '/myInfo')
+    .pipe(
       map(mySpotifyInfo => mySpotifyInfo),
       tap(mySpotifyInfo => this.log(`fetched mySpotifyInfo`)),
       catchError(this.handleError('getMyInfo', []))
@@ -34,10 +30,9 @@ export class SpotifyService {
   }
 
     // GET my Spotify info from the server 
-    getMyCurrentlyPlaying() {
-      return this.http.get<any[]>(this.spotifyUrl + '/v1/me/player/currently-playing', {
-        headers: headers
-      }).pipe(
+    getMyCurrentlyPlaying(token: string) {
+      return this.http.get<any[]>(this.spotifyUrl + '/currentlyPlaying')
+      .pipe(
         map(mySpotifyCurrentlyPlaying => mySpotifyCurrentlyPlaying),
         tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyCurrentlyPlaying`)),
         catchError(this.handleError('getMyCurrentlyPlaying', []))

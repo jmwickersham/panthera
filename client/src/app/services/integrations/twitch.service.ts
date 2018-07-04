@@ -9,12 +9,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../services/message.service';
 
-const clientID = environment.twitch.clientID;
-const headers = new HttpHeaders().set('Client-ID', clientID);
-
 @Injectable()
 export class TwitchService {
-  private twitchUrl = 'https://api.twitch.tv/helix';
+  private twitchUrl = environment.serverUrl + '/api/twitch';
 
   constructor(
     private http: HttpClient,
@@ -22,14 +19,11 @@ export class TwitchService {
   ) { }
 
   // GET Methods
-
-  // GET tasks from the server 
   getUser(id = '42859398') {
-    return this.http.get<any[]>(this.twitchUrl + '/users', {
-      headers: headers, 
+    return this.http.get<any[]>(this.twitchUrl + '/user', {
       params: new HttpParams().set('id', id.toString())
     }).pipe(
-        map(twitchUser => twitchUser["data"]),
+        map(twitchUser => twitchUser),
         tap(twitchUser => this.log(`fetched twitchUser`)),
         catchError(this.handleError('getUser', []))
       );
@@ -37,10 +31,9 @@ export class TwitchService {
 
   getStream(id = '42859398') {
     return this.http.get<any[]>(this.twitchUrl + '/streams', { 
-      headers: headers, 
-      params: new HttpParams().set('user_id', id.toString())
+        params: new HttpParams().set('id', id.toString())
     }).pipe(
-        map(twitchStream => twitchStream["data"]),
+        map(twitchStream => twitchStream),
         tap(twitchStream => this.log(`fetched twitchStream`)),
         catchError(this.handleError('getStream', []))
       );
