@@ -1,0 +1,36 @@
+<h3><img src="../../assets/images/battlenet_logo.png" id="battlenetIcon"> Battle.net</h3>
+<div *ngIf="!bnetWowCharacter" class="ui card">
+  <div class="content">
+    There was a problem loading this Battle.net account.
+  </div>
+</div>
+<div *ngIf="bnetWowCharacter" class="ui card">
+  <a class="image" href="https://worldofwarcraft.com/en-us/character/{{ bnetWowCharacter.realm }}/{{ bnetWowCharacter.name }}" target="_blank">
+    <img src="https://render-us.worldofwarcraft.com/character/{{ bnetWowCharacter.thumbnail }}">
+    <!-- <img id="avatar" class="object-fit_cover" src="{{ bnetWowCharacterRenderURL }}"> -->
+  </a>
+  <div class="content">
+    <div class="header">{{ bnetWowCharacterTitle | uppercase }}</div>
+    <div class="meta">
+      Level {{ bnetWowCharacter.level }}
+    </div>
+    <div class="description">
+      <strong>Spec: </strong> {{ bnetWowCharacterSpec }}
+      <br/>
+      <strong>Health: </strong> {{ bnetWowCharacter.stats.health }}
+      <br/><br/>
+      <strong>Guild:</strong> {{ bnetWowCharacter.guild.name }}
+      <br/>
+      <strong>Achievement Points (Guild):</strong> {{ bnetWowCharacter.guild.achievementPoints }}
+    </div>
+  </div>
+  <div class="extra content">
+    <span>
+      <i class="users icon"></i>
+      Achievement Points
+    </span>
+    <span class="right floated">
+      {{ bnetWowCharacter.achievementPoints }}
+    </span>
+  </div>
+</div>

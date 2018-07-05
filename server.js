@@ -25,7 +25,8 @@ const taskRoutes    = require("./api/routes/tasks"),
       indexRoutes   = require("./api/routes/index"),
       steamRoutes   = require("./api/routes/steam"),
       spotifyRoutes = require("./api/routes/spotify"),
-      twitchRoutes  = require("./api/routes/twitch");
+      twitchRoutes  = require("./api/routes/twitch"),
+      battlenetRoutes = require("./api/routes/battlenet");
 
 // Set up App
 let app = express();
@@ -49,6 +50,7 @@ app.use("/api/tasks/:id/comments", commentRoutes);
 app.use("/api/steam", steamRoutes);
 app.use("/api/spotify", spotifyRoutes);
 app.use("/api/twitch", twitchRoutes);
+app.use("/api/battlenet", battlenetRoutes);
 
 // Optional fallthrough error handler
 app.use(function onError(err, req, res, next) {

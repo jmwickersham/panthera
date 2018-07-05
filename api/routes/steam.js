@@ -45,7 +45,7 @@ router.get("/ownedGames", function (req, res, next) {
     let id = req.query.id;
     let httpStatus = '';
     let steamResponse = '';
-    console.log('inside get owned games - id: ' + id);
+    console.log('inside get owned Steam games - id: ' + id);
 
     request({
             method: 'GET',
@@ -110,6 +110,5 @@ router.get("/recentGames", function (req, res, next) {
         }
     );
 });
-
 
 module.exports = router;
