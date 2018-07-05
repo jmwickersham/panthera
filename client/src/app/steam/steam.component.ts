@@ -24,7 +24,7 @@ export class SteamComponent implements OnInit {
   getUser(): void {
     this.steamService.getUser()
       .subscribe(steamUser => {
-        switch(steamUser["players"][0].personastate) {
+        switch(steamUser[0].personastate) {
           case 1:
             this.status = 'Online';
             break;
@@ -46,7 +46,7 @@ export class SteamComponent implements OnInit {
           default:
             this.status = 'Offline'
         }
-        this.steamUser = steamUser["players"][0]
+        this.steamUser = steamUser[0]
       });
   }
 

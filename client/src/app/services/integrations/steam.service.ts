@@ -9,11 +9,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../../services/message.service';
 
-const steamKey = environment.steam.key;
-
 @Injectable()
 export class SteamService {
-  private steamUrl = 'https://api.steampowered.com';
+  private steamUrl = environment.serverUrl + '/api/steam';
 
   constructor(
     private http: HttpClient,
@@ -21,42 +19,35 @@ export class SteamService {
   ) { }
 
   // GET Methods
-
-  // GET tasks from the server 
   getUser(id = '76561198031523398') {
-    return this.http.get<any[]>(this.steamUrl + '/ISteamUser/GetPlayerSummaries/v2', {
-      params: new HttpParams()
-      .set('key', steamKey.toString())
-      .set('steamids', id.toString())
+    return this.http.get<any[]>(this.steamUrl + '/user', {
+       params: new HttpParams()
+        .set('id', id.toString())
     }).pipe(
-        map(steamUser => steamUser["response"]),
-        tap(steamUser => this.log(`fetched steamUser`)),
-        catchError(this.handleError('getUser', []))
-      );
+         map(steamUser => steamUser),
+         tap(steamUser => this.log(`fetched steamUser: ${steamUser}`)),
+         catchError(this.handleError('getUser', []))
+    );
   }
 
   getOwnedGames(id = '76561198031523398') {
-    return this.http.get<any[]>(this.steamUrl + '/IPlayerService/GetOwnedGames/v1', { 
+    return this.http.get<any[]>(this.steamUrl + '/ownedGames', { 
       params: new HttpParams()
-      .set('key', steamKey.toString())
-      .set('steamid', id.toString())
-      .set('include_appinfo', '1')
-      .set('include_played_free_games', '1')
+      .set('id', id.toString())
     }).pipe(
-        map(steamGames => steamGames["response"]),
-        tap(steamGames => this.log(`fetched steamGames`)),
+        map(steamGames => steamGames),
+        tap(steamGames => this.log(`fetched steamGames: ${steamGames}`)),
         catchError(this.handleError('getOwnedGames', []))
       );
   }
 
   getRecentGames(id = '76561198031523398') {
-    return this.http.get<any[]>(this.steamUrl + '/IPlayerService/GetRecentlyPlayedGames/v1', { 
+    return this.http.get<any[]>(this.steamUrl + '/recentGames', { 
       params: new HttpParams()
-      .set('key', steamKey.toString())
-      .set('steamid', id.toString())
+      .set('id', id.toString())
     }).pipe(
-        map(steamRecentGames => steamRecentGames["response"]),
-        tap(steamRecentGames => this.log(`fetched steamRecentGames`)),
+        map(steamRecentGames => steamRecentGames),
+        tap(steamRecentGames => this.log(`fetched steamRecentGames: ${steamRecentGames}`)),
         catchError(this.handleError('getRecentGames', []))
       );
   }

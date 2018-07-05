@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import * as Raven                             from 'raven-js';
 import { NgModule, ErrorHandler }             from '@angular/core';
 import { BrowserModule }                      from '@angular/platform-browser';
+import { BrowserAnimationsModule }            from '@angular/platform-browser/animations'
 import { FormsModule }                        from '@angular/forms';
 import { HttpClientModule }                   from '@angular/common/http';
 import { MatTableModule, MatPaginatorModule } from '@angular/material';
@@ -23,6 +24,7 @@ import { ProfileComponent }    from './profile/profile.component';
 import { SpotifyComponent }    from './spotify/spotify.component';
 import { SteamComponent }      from './steam/steam.component';
 import { TwitchComponent }     from './twitch/twitch.component';
+import { BattlenetComponent }  from './battlenet/battlenet.component';
 
 // Services
 import { MessageService }        from './services/message.service';
@@ -31,6 +33,7 @@ import { UserService }           from './services/user.service';
 import { SteamService }          from './services/integrations/steam.service';
 import { SpotifyService }        from './services/integrations/spotify.service';
 import { TwitchService }         from './services/integrations/twitch.service';
+import { BattlenetService }      from './services/integrations/battlenet.service'
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService }      from './services/auth-guard.service';
 
@@ -48,6 +51,7 @@ export class RavenErrorHandler implements ErrorHandler {
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
@@ -67,7 +71,8 @@ export class RavenErrorHandler implements ErrorHandler {
     ProfileComponent,
     TwitchComponent,
     SteamComponent,
-    SpotifyComponent
+    SpotifyComponent,
+    BattlenetComponent
   ],
   providers: [
     MessageService,
@@ -76,6 +81,7 @@ export class RavenErrorHandler implements ErrorHandler {
     SpotifyService,
     SteamService,
     TwitchService,
+    BattlenetService,
     AuthenticationService,
     AuthGuardService,
     { provide: ErrorHandler, useClass: RavenErrorHandler }

@@ -8,21 +8,26 @@ import { SpotifyService } from '../services/integrations/spotify.service';
   styleUrls: ['./spotify.component.css']
 })
 export class SpotifyComponent implements OnInit {
-  spotifyUser: {};
   mySpotifyInfo: {};
   mySpotifyCurrentlyPlaying: {};
   currentlyPlaying: boolean;
+  interval: any;
 
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit() {
     this.getMyInfo();
     this.getMyCurrentlyPlaying();
+
+    // this.interval = setInterval(() => { 
+    //     this.getMyCurrentlyPlaying(); 
+    // }, 30000);
   }
 
   getMyInfo(): void {
     this.spotifyService.getMyInfo()
     .subscribe(mySpotifyInfo => {
+      console.log(mySpotifyInfo)
       this.mySpotifyInfo = mySpotifyInfo;
     })
   }
@@ -30,7 +35,7 @@ export class SpotifyComponent implements OnInit {
   getMyCurrentlyPlaying(): void {
     this.spotifyService.getMyCurrentlyPlaying()
     .subscribe(mySpotifyCurrentlyPlaying => {
-      console.log('spotify:', mySpotifyCurrentlyPlaying);
+      console.log(mySpotifyCurrentlyPlaying)
       if (mySpotifyCurrentlyPlaying["is_playing"] == true) {
         this.currentlyPlaying = true;
       }
