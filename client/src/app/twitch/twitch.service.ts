@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -7,13 +7,11 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from '../../services/message.service';
+import { MessageService } from '../core/services/message.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BattlenetService {
-  private bnetUrl = environment.serverUrl + '/api/battlenet';
+@Injectable()
+export class TwitchService {
+  private twitchUrl = environment.serverUrl + '/api/twitch';
 
   constructor(
     private http: HttpClient,
@@ -21,14 +19,26 @@ export class BattlenetService {
   ) { }
 
   // GET Methods
-  getWowCharacter() {
-    return this.http.get<any[]>(this.bnetUrl + '/wow/character')
-      .pipe(
-        map(bnetWowCharacter => bnetWowCharacter),
-        tap(bnetWowCharacter => this.log(`fetched bnetWowCharacter: ${bnetWowCharacter}`)),
-        catchError(this.handleError('getWowCharacter', []))
+  getUser(id = '42859398') {
+    return this.http.get<any[]>(this.twitchUrl + '/user', {
+      params: new HttpParams().set('id', id.toString())
+    }).pipe(
+        map(twitchUser => twitchUser),
+        tap(twitchUser => this.log(`fetched twitchUser: ${twitchUser}`)),
+        catchError(this.handleError('getUser', []))
       );
   }
+
+  getStream(id = '42859398') {
+    return this.http.get<any[]>(this.twitchUrl + '/streams', { 
+        params: new HttpParams().set('id', id.toString())
+    }).pipe(
+        map(twitchStream => twitchStream),
+        tap(twitchStream => this.log(`fetched twitchStream: ${twitchStream}`)),
+        catchError(this.handleError('getStream', []))
+      );
+  }
+
   // Error Handling
 
   /* Handle Http operation that failed. Let the app continue.
@@ -48,8 +58,8 @@ export class BattlenetService {
     };
   }
 
-  // Log a BattleNet Service message with the MessageService
+  // Log a TwitchService message with the MessageService
   private log(message: string) {
-    this.messageService.add('BattleNet Service: ' + message);
+    this.messageService.add('TwitchService: ' + message);
   }
 }

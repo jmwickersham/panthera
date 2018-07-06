@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -7,37 +7,37 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from '../../services/message.service';
+import { MessageService } from '../core/services/message.service';
 
 @Injectable()
-export class TwitchService {
-  private twitchUrl = environment.serverUrl + '/api/twitch';
+export class SpotifyService {
+  private spotifyUrl = environment.serverUrl + '/api/spotify';
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService
   ) { }
 
-  // GET Methods
-  getUser(id = '42859398') {
-    return this.http.get<any[]>(this.twitchUrl + '/user', {
-      params: new HttpParams().set('id', id.toString())
-    }).pipe(
-        map(twitchUser => twitchUser),
-        tap(twitchUser => this.log(`fetched twitchUser: ${twitchUser}`)),
-        catchError(this.handleError('getUser', []))
-      );
+
+  // GET my Spotify info from the server 
+  getMyInfo() {
+    return this.http.get<any[]>(this.spotifyUrl + '/myInfo')
+    .pipe(
+      map(mySpotifyInfo => mySpotifyInfo),
+      tap(mySpotifyInfo => this.log(`fetched mySpotifyInfo: ${mySpotifyInfo}`)),
+      catchError(this.handleError('getMyInfo', []))
+    );
   }
 
-  getStream(id = '42859398') {
-    return this.http.get<any[]>(this.twitchUrl + '/streams', { 
-        params: new HttpParams().set('id', id.toString())
-    }).pipe(
-        map(twitchStream => twitchStream),
-        tap(twitchStream => this.log(`fetched twitchStream: ${twitchStream}`)),
-        catchError(this.handleError('getStream', []))
+    // GET my Spotify info from the server 
+    getMyCurrentlyPlaying() {
+      return this.http.get<any[]>(this.spotifyUrl + '/currentlyPlaying')
+      .pipe(
+        map(mySpotifyCurrentlyPlaying => mySpotifyCurrentlyPlaying),
+        tap(mySpotifyCurrentlyPlaying => this.log(`fetched mySpotifyCurrentlyPlaying: ${mySpotifyCurrentlyPlaying}`)),
+        catchError(this.handleError('getMyCurrentlyPlaying', []))
       );
-  }
+    }
 
   // Error Handling
 
@@ -58,8 +58,8 @@ export class TwitchService {
     };
   }
 
-  // Log a TwitchService message with the MessageService
+  // Log a SpotifyService message with the MessageService
   private log(message: string) {
-    this.messageService.add('TwitchService: ' + message);
+    this.messageService.add('SpotifyService: ' + message);
   }
 }

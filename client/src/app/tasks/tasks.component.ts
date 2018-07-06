@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Task }        from '../models/task.model';
-import { TaskService } from '../services/task.service';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -13,7 +13,7 @@ export class TasksComponent implements OnInit {
   totalPages: number;
   currentPage: number;
   
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TasksService) { }
 
   ngOnInit() {
     this.getTasks();

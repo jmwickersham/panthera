@@ -5,38 +5,17 @@ import * as Raven                             from 'raven-js';
 import { NgModule, ErrorHandler }             from '@angular/core';
 import { BrowserModule }                      from '@angular/platform-browser';
 import { BrowserAnimationsModule }            from '@angular/platform-browser/animations'
-import { FormsModule }                        from '@angular/forms';
 import { HttpClientModule }                   from '@angular/common/http';
-import { MatTableModule, MatPaginatorModule } from '@angular/material';
-import { AppRoutingModule }                   from './app-routing.module';
 
-// Components
-import { AppComponent }        from './app.component';
-import { MessagesComponent }   from './messages/messages.component';
-import { TasksComponent }      from './tasks/tasks.component';
-import { TaskDetailComponent } from './task-detail/task-detail.component';
-import { UsersComponent }      from './users/users.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { LoginComponent }      from './login/login.component';
-import { RegisterComponent }   from './register/register.component';
-import { LandingComponent }    from './landing/landing.component';
-import { ProfileComponent }    from './profile/profile.component';
-import { SpotifyComponent }    from './spotify/spotify.component';
-import { SteamComponent }      from './steam/steam.component';
-import { TwitchComponent }     from './twitch/twitch.component';
-import { BattlenetComponent }  from './battlenet/battlenet.component';
+// App Root
+import { AppComponent } from './app.component';
 
-// Services
-import { MessageService }        from './services/message.service';
-import { TaskService }           from './services/task.service';
-import { UserService }           from './services/user.service';
-import { SteamService }          from './services/integrations/steam.service';
-import { SpotifyService }        from './services/integrations/spotify.service';
-import { TwitchService }         from './services/integrations/twitch.service';
-import { BattlenetService }      from './services/integrations/battlenet.service'
-import { AuthenticationService } from './services/authentication.service';
-import { AuthGuardService }      from './services/auth-guard.service';
+// Feature Modules
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
+// Routing Module
+import { AppRoutingModule } from './app-routing.module';
 
 Raven
   .config('https://688f70971071467f95496cf225487ffc@sentry.io/1209803')
@@ -52,38 +31,15 @@ export class RavenErrorHandler implements ErrorHandler {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule,
-    AppRoutingModule,
+    CoreModule,
     HttpClientModule,
-    MatTableModule,
-    MatPaginatorModule
+    AppRoutingModule,
+    SharedModule
   ],
   declarations: [
-    AppComponent,
-    TasksComponent,
-    MessagesComponent,
-    TaskDetailComponent,
-    UsersComponent,
-    UserDetailComponent,
-    LoginComponent,
-    RegisterComponent,
-    LandingComponent,
-    ProfileComponent,
-    TwitchComponent,
-    SteamComponent,
-    SpotifyComponent,
-    BattlenetComponent
+    AppComponent
   ],
   providers: [
-    MessageService,
-    TaskService,
-    UserService,
-    SpotifyService,
-    SteamService,
-    TwitchService,
-    BattlenetService,
-    AuthenticationService,
-    AuthGuardService,
     { provide: ErrorHandler, useClass: RavenErrorHandler }
   ],
   bootstrap: [ AppComponent ]

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AuthenticationService, TokenPayload } from '../services/authentication.service';
+import { AuthenticationService, TokenPayload } from '../core/services/authentication.service';
 
 @Component({
   selector: 'app-register',

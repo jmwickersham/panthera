@@ -8,7 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Task } from '../models/task.model';
-import { MessageService } from '../services/message.service';
+import { MessageService } from '../core/services/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -19,7 +19,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class TaskService {
+export class TasksService {
   private taskUrl = environment.serverUrl + '/api/tasks';
 
   constructor(

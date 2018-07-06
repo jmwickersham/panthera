@@ -1,21 +1,21 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute }           from '@angular/router';
-import { Location }                 from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
-import { User }        from '../models/user.model';
-import { UserService } from '../services/user.service';
+import { User } from '../models/user.model';
+import { UsersService } from './users.service';
 
 @Component({
   selector: 'app-user-detail',
-  templateUrl: './user-detail.component.html',
-  styleUrls: ['./user-detail.component.css']
+  templateUrl: './users-detail.component.html',
+  styleUrls: ['./users-detail.component.css']
 })
-export class UserDetailComponent implements OnInit {
+export class UsersDetailComponent implements OnInit {
   @Input() user: User;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UserService,
+    private userService: UsersService,
     private location: Location
   ) { }
 
@@ -44,5 +44,4 @@ export class UserDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
-
 }

@@ -3,20 +3,20 @@ import { ActivatedRoute }           from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import { Task } from '../models/task.model';
-import { TaskService } from '../services/task.service';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-task-detail',
-  templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.css']
+  templateUrl: './tasks-detail.component.html',
+  styleUrls: ['./tasks-detail.component.css']
 })
 
-export class TaskDetailComponent implements OnInit {
+export class TasksDetailComponent implements OnInit {
   @Input() task: Task;
 
   constructor(
     private route: ActivatedRoute,
-    private taskService: TaskService,
+    private taskService: TasksService,
     private location: Location
   ) { }
 

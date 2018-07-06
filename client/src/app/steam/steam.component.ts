@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SteamService } from '../services/integrations/steam.service';
+import { SteamService } from './steam.service';
 
 @Component({
   selector: 'app-steam',
