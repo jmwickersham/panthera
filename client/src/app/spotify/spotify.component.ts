@@ -16,8 +16,8 @@ export class SpotifyComponent implements OnInit {
   constructor(private spotifyService: SpotifyService) { }
 
   ngOnInit() {
-    this.getMyInfo();
-    this.getMyCurrentlyPlaying();
+    // this.getMyInfo();
+    // this.getMyCurrentlyPlaying();
 
     // this.interval = setInterval(() => { 
     //     this.getMyCurrentlyPlaying(); 

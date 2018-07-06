@@ -14,8 +14,8 @@
       {{ status }}
     </div>
     <div class="description">
-      Recent Games:
-      <ul>
+      <strong>Recent Games:</strong>
+      <ul *ngIf="steamRecentGames">
         <li *ngFor="let game of steamRecentGames.games">
           {{ game.name }}
         </li>
@@ -27,8 +27,11 @@
       <i class="gamepad icon"></i>
       Games Owned
     </span>
-    <span class="right floated">
+    <span *ngIf="steamGames" class="right floated">
       {{ steamGames.game_count }}
+    </span>
+    <span *ngIf="!steamGames" class="right floated">
+      TBD
     </span>
   </div>
 </div>
