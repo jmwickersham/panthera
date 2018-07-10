@@ -18,7 +18,9 @@ const httpOptions = {
   )
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UsersService {
   private userUrl = environment.serverUrl + '/api/users';
   private indexUrl = environment.serverUrl + '/api';

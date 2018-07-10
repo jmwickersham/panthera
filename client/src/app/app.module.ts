@@ -5,14 +5,12 @@ import * as Raven                             from 'raven-js';
 import { NgModule, ErrorHandler }             from '@angular/core';
 import { BrowserModule }                      from '@angular/platform-browser';
 import { BrowserAnimationsModule }            from '@angular/platform-browser/animations'
-import { HttpClientModule }                   from '@angular/common/http';
 
 // App Root
 import { AppComponent } from './app.component';
 
 // Feature Modules
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
@@ -32,9 +30,7 @@ export class RavenErrorHandler implements ErrorHandler {
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    HttpClientModule,
-    AppRoutingModule,
-    SharedModule
+    AppRoutingModule
   ],
   declarations: [
     AppComponent

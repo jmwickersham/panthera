@@ -32,7 +32,9 @@ export interface TokenPayload {
   last_name?: string;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthenticationService {
   private serverUrl = environment.serverUrl;
   private token: string;

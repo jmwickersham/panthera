@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { BattlenetComponent }  from './battlenet.component';
+import { BattlenetComponent } from './battlenet.component';
 
-import { BattlenetService }      from './battlenet.service';
+import { BattlenetService } from './battlenet.service';
 
 @NgModule({
   imports: [

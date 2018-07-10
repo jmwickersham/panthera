@@ -9,7 +9,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../core/services/message.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SteamService {
   private steamUrl = environment.serverUrl + '/api/steam';
 

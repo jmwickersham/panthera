@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MessagesComponent } from './messages.component';
 
@@ -7,9 +8,13 @@ import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { MessageService } from './services/message.service';
 
+import { LandingModule } from '../landing/landing.module';
+
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    LandingModule,
+    HttpClientModule
   ],
   declarations: [
     MessagesComponent
