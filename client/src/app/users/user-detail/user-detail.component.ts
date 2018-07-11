@@ -2,20 +2,20 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { User } from '../models/user.model';
-import { UsersService } from './users.service';
+import { User } from '../../models/user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-detail',
-  templateUrl: './users-detail.component.html',
-  styleUrls: ['./users-detail.component.css']
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.css']
 })
-export class UsersDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
   @Input() user: User;
 
   constructor(
     private route: ActivatedRoute,
-    private userService: UsersService,
+    private userService: UserService,
     private location: Location
   ) { }
 

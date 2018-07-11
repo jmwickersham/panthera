@@ -5,14 +5,14 @@ import { catchError, finalize } from "rxjs/operators";
 import { of } from "rxjs/observable/of";
 
 import { Task } from '../models/task.model';
-import { TasksService } from './tasks.service';
+import { TaskService } from './task.service';
 
 export class TasksDataSource implements DataSource<Task> {
     private tasksSubject = new BehaviorSubject<Task[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);
     public loading$ = this.loadingSubject.asObservable();
     
-    constructor(private taskService: TasksService) { }
+    constructor(private taskService: TaskService) { }
   
     loadTasks(/*taskId:string, filter:string, sortDirection:string, */pageIndex: number, pageSize: number) {
       this.loadingSubject.next(true);

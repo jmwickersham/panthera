@@ -21,7 +21,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class TasksService {
+export class TaskService {
   private taskUrl = environment.serverUrl + '/api/tasks';
 
   constructor(

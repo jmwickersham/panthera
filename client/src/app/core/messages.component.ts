@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../core/services/message.service';
+import { MessageService } from './services/message.service';
 
 declare var jQuery: any;
 

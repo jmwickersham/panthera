@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    margin-bottom: 0;
+    height: 50px;
 }
 
 .masthead.segment {
@@ -25,4 +25,5 @@
 .ui.grid {
     margin-top: 0rem;
     margin-bottom: 1rem;
+    padding-bottom: 50px;
 }

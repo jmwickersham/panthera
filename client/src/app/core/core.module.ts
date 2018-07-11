@@ -4,9 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MessagesComponent } from './messages.component';
 
-import { AuthenticationService } from './services/authentication.service';
-import { AuthGuardService } from './services/auth-guard.service';
-
 import { LandingModule } from '../landing/landing.module';
 
 @NgModule({
@@ -21,10 +18,7 @@ import { LandingModule } from '../landing/landing.module';
   exports: [
     MessagesComponent
   ],
-  providers: [
-    AuthenticationService,
-    AuthGuardService
-  ]
+  providers: []
 })
 export class CoreModule {
   constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
