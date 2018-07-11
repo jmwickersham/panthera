@@ -15,13 +15,18 @@ import { CoreModule } from './core/core.module';
 // Routing Module
 import { AppRoutingModule } from './app-routing.module';
 
-Raven
-  .config('https://688f70971071467f95496cf225487ffc@sentry.io/1209803')
-  .install();
+if (environment.production) {
+  Raven
+    .config('https://688f70971071467f95496cf225487ffc@sentry.io/1209803')
+    .install();
+}
 
-export class RavenErrorHandler implements ErrorHandler {
+export class RavenErrorHandler extends ErrorHandler {
   handleError(err:any) : void {
-    Raven.captureException(err);
+    if (environment.production) {
+      Raven.captureException(err);
+    }
+    super.handleError(err);
   }
 }
 

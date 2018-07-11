@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { BattlenetComponent } from './battlenet.component';
 
-import { BattlenetService } from './battlenet.service';
-
 @NgModule({
   imports: [
     CommonModule
@@ -12,8 +10,10 @@ import { BattlenetService } from './battlenet.service';
   declarations: [
     BattlenetComponent
   ],
+  exports: [
+    BattlenetComponent
+  ],
   providers: [
-    BattlenetService
   ]
 })
 export class BattlenetModule { }

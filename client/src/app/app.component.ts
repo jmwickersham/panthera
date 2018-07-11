@@ -16,7 +16,9 @@ export class AppComponent {
   constructor(
     private router: Router,
     public auth: AuthenticationService
-  ) { }
+  ) {
+    console.log('hello');
+   }
 
   onToggle() {
     jQuery('.ui.sidebar').sidebar('setting', 'transition', 'push').sidebar('toggle');

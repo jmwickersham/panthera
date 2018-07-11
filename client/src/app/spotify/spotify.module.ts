@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SpotifyComponent } from './spotify.component';
 
-import { SpotifyService } from './spotify.service';
-
 @NgModule({
   imports: [
     CommonModule
@@ -12,8 +10,11 @@ import { SpotifyService } from './spotify.service';
   declarations: [
     SpotifyComponent
   ],
+  exports: [
+    SpotifyComponent
+  ],
   providers: [
-    SpotifyService
+  
   ]
 })
 export class SpotifyModule { }

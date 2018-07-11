@@ -6,7 +6,6 @@ import { MessagesComponent } from './messages.component';
 
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { MessageService } from './services/message.service';
 
 import { LandingModule } from '../landing/landing.module';
 
@@ -20,11 +19,11 @@ import { LandingModule } from '../landing/landing.module';
     MessagesComponent
   ],
   exports: [
+    MessagesComponent
   ],
   providers: [
     AuthenticationService,
-    AuthGuardService,
-    MessageService
+    AuthGuardService
   ]
 })
 export class CoreModule {

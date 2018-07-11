@@ -28,7 +28,7 @@ export class SteamService {
     }).pipe(
          map(steamUser => steamUser),
          tap(steamUser => this.log(`fetched steamUser: ${steamUser}`)),
-         catchError(this.handleError('getUser', []))
+         catchError(this.handleError('getUser', [{personastate: 'error'}]))
     );
   }
 
@@ -50,7 +50,7 @@ export class SteamService {
     }).pipe(
         map(steamRecentGames => steamRecentGames),
         tap(steamRecentGames => this.log(`fetched steamRecentGames: ${steamRecentGames}`)),
-        catchError(this.handleError('getRecentGames', []))
+        catchError(this.handleError('getRecentGames'))
       );
   }
 

@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TwitchComponent } from './twitch.component';
 
-import { TwitchService } from './twitch.service';
-
 @NgModule({
   imports: [
     CommonModule
@@ -12,8 +10,9 @@ import { TwitchService } from './twitch.service';
   declarations: [
     TwitchComponent
   ],
-  providers: [
-    TwitchService
-  ]
+  exports: [
+    TwitchComponent
+  ],
+  providers: []
 })
 export class TwitchModule { }
