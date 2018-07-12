@@ -47,13 +47,13 @@
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-      <a *ngIf="auth.isLoggedIn()" class="item" routerLink="/profile">
+      <a *ngIf="auth.isLoggedIn()" class="item" routerLink="profile">
         Logged in as:&nbsp;&nbsp;
         <img *ngIf="auth.getUserDetails().imageURL" class="ui avatar image" [src]="auth.getUserDetails()?.imageURL"> {{ auth.getUserDetails()?.first_name }}
       </a>
       <a *ngIf="auth.isLoggedIn()" class="item ui inverted button" (click)="auth.logout()">Logout</a>
-      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="/register">Register</a>
-      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="/login">Login</a>
+      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="login/register">Register</a>
+      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="login">Login</a>
     </div>
   </div>
 </div>
