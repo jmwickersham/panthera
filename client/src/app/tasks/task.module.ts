@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { TaskRoutingModule } from './task-routing.module';
 
@@ -8,7 +9,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   imports: [
-    CommonModule,
+    SharedModule,
     TaskRoutingModule
   ],
   declarations: [
@@ -17,7 +18,8 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
   ],
   exports: [
     TaskListComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    SharedModule
   ],
   providers: []
 })

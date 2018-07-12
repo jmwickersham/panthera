@@ -27,7 +27,7 @@ export class TwitchService {
     }).pipe(
         map(twitchUser => twitchUser),
         tap(twitchUser => this.log(`fetched twitchUser: ${twitchUser}`)),
-        catchError(this.handleError('getUser', []))
+        catchError(this.handleError('getUser'))
       );
   }
 
@@ -37,7 +37,7 @@ export class TwitchService {
     }).pipe(
         map(twitchStream => twitchStream),
         tap(twitchStream => this.log(`fetched twitchStream: ${twitchStream}`)),
-        catchError(this.handleError('getStream', []))
+        catchError(this.handleError('getStream'))
       );
   }
 

@@ -26,7 +26,7 @@ export class BattlenetService {
       .pipe(
         map(bnetWowCharacter => bnetWowCharacter),
         tap(bnetWowCharacter => this.log(`fetched bnetWowCharacter: ${bnetWowCharacter}`)),
-        catchError(this.handleError('getWowCharacter', []))
+        catchError(this.handleError('getWowCharacter'))
       );
   }
   
