@@ -37,7 +37,7 @@ export class TwitchService {
     }).pipe(
         map(twitchStream => twitchStream),
         tap(twitchStream => this.log(`fetched twitchStream: ${twitchStream}`)),
-        catchError(this.handleError('getStream'))
+        catchError(this.handleError('getStream', []))
       );
   }
 
