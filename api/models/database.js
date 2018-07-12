@@ -1,8 +1,6 @@
 // Require Packages
 const mongoose = require('mongoose');
 
-const seedDB = require("../../seeds");
-
 const dbURI = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
 
 let gracefulShutdown;
@@ -48,5 +46,3 @@ process.on('SIGTERM', function() {
 require('../models/user');
 require('../models/task');
 require('../models/comment');
-
-// seedDB(); // Seed the database

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TwitchService } from '../services/integrations/twitch.service';
+import { TwitchService } from './twitch.service';
 
 @Component({
   selector: 'app-twitch',

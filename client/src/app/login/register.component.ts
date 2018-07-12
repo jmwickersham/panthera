@@ -5,15 +5,19 @@ import { Location } from '@angular/common';
 import { AuthenticationService, TokenPayload } from '../core/services/authentication.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 
-export class LoginComponent {
+export class RegisterComponent {
 
   credentials: TokenPayload = {
     username: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    imageURL: '',
     password: ''
   };
 
@@ -26,12 +30,12 @@ export class LoginComponent {
   ngOnInit() {
   }
 
-  login() {
-    this.auth.login(this.credentials).subscribe(() => {
+  register() {
+    this.auth.register(this.credentials).subscribe(() => {
       this.router.navigateByUrl('/profile');
     }, (err) => {
       console.error(err);
-    }); 
+    });
   }
 
   goBack(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BattlenetService } from '../services/integrations/battlenet.service';
+import { BattlenetService } from './battlenet.service';
 
 @Component({
   selector: 'app-battlenet',
