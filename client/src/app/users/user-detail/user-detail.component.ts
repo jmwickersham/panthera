@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { User } from '../../models/user.model';
 import { UserService } from '../user.service';
+
+import { AuthenticationService, TokenPayload } from '../../core/services/authentication.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,11 +14,21 @@ import { UserService } from '../user.service';
 })
 export class UserDetailComponent implements OnInit {
   @Input() user: User;
+  credentials: TokenPayload = {
+    username: '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    imageURL: '',
+    password: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private userService: UserService,
-    private location: Location
+    private location: Location,
+    private auth: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -39,6 +51,14 @@ export class UserDetailComponent implements OnInit {
   deleteUser(user: User): void {
     this.userService.deleteUser(this.user)
       .subscribe(() => this.goBack());
+  }
+
+  register() {
+    this.auth.register(this.credentials).subscribe(() => {
+      this.router.navigateByUrl('/landing');
+    }, (err) => {
+      console.error(err);
+    });
   }
 
   goBack(): void {

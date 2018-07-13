@@ -1,7 +1,7 @@
 <div class="ui grid container">
   <div class="sixteen wide column">
     <h2 class="ui top attached header inverted">All Tasks    
-      <a routerLink="tasks/new" class="ui right floated button">Add Task</a>
+      <a routerLink="/tasks/new" class="ui right floated button">Add Task</a>
     </h2>
     <table class="ui selectable inverted table attached unstackable sortable">
       <thead>
@@ -15,7 +15,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <td><a routerLink="tasks/{{ task._id }}"><i class="info circle icon"></i></a></td>
+          <td><a routerLink="/tasks/{{ task._id }}"><i class="info circle icon"></i></a></td>
           <td>{{ task.short_description }}...</td>
           <td>{{ task.description | slice:0:100 }}</td>
           <td>{{ task.createdAt | date:'medium':'-0700' }}</td>

@@ -3,7 +3,8 @@
     <i class="home icon"></i>
     Home
   </a>
-  <a class="item" routerLink="/" (click)="onToggle()">
+  <!-- TODO: Update this to the site owner id eventually -->
+  <a class="item" routerLink="/users/5affb57d26128839acc0340c" (click)="onToggle()">
     <i class="user outline icon"></i>
     About Me
   </a>
@@ -14,11 +15,11 @@
   <div class="item">
     <div class="header">Site Owner Links</div>
     <div class="menu">
-      <a class="item" routerLink="/tasks" (click)="onToggle()">
+      <a class="item" routerLink="tasks" (click)="onToggle()">
         <i class="list icon"></i>
         Tasks
       </a>
-      <a class="item" routerLink="/users" (click)="onToggle()">
+      <a class="item" routerLink="users" (click)="onToggle()">
         <i class="users icon"></i>
         Users
       </a>
@@ -47,12 +48,12 @@
     </a>
     <a class="item" routerLink="/">{{ title }}</a>
     <div class="right menu">
-      <a *ngIf="auth.isLoggedIn()" class="item" routerLink="profile">
+      <a *ngIf="auth.isLoggedIn()" class="item" routerLink="users/{{ auth.getUserDetails()?._id }}">
         Logged in as:&nbsp;&nbsp;
         <img *ngIf="auth.getUserDetails().imageURL" class="ui avatar image" [src]="auth.getUserDetails()?.imageURL"> {{ auth.getUserDetails()?.first_name }}
       </a>
       <a *ngIf="auth.isLoggedIn()" class="item ui inverted button" (click)="auth.logout()">Logout</a>
-      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="login/register">Register</a>
+      <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="users/new">Register</a>
       <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="login">Login</a>
     </div>
   </div>

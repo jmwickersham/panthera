@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let user of users">
-            <td><a routerLink="users/{{ user._id }}"><i class="info circle icon"></i></a></td>
+            <td><a routerLink="/users/{{ user._id }}"><i class="info circle icon"></i></a></td>
             <td>{{ user.username }}</td>
             <td>{{ user.first_name }}</td>
             <td>{{ user.last_name }}</td>
