@@ -1,13 +1,16 @@
 // Require Packages
 require('dotenv').config()
-const express       = require("express"),
-      bodyParser    = require("body-parser"),
-      path          = require("path"),
-      passport      = require("passport"),
-      favicon       = require("serve-favicon"),
-      cookieParser  = require('cookie-parser'),
-      cors          = require('cors'),
-      Raven         = require('raven');
+const express         = require("express"),
+      bodyParser      = require("body-parser"),
+      path            = require("path"),
+      passport        = require("passport"),
+      favicon         = require("serve-favicon"),
+      cookieParser    = require('cookie-parser'),
+      cors            = require('cors'),
+      Raven           = require('raven'),
+      YAML            = require('yamljs'),
+      swaggerUi       = require('swagger-ui-express'),
+      swaggerDocument = YAML.load('./api/docs/swagger.yaml');
 
 // Must configure Raven before doing anything else with it
 Raven.config('https://b8334ab2837946a78618193b9b014917@sentry.io/1209804').install();
@@ -22,11 +25,21 @@ require('./api/config/passport');
 const taskRoutes    = require("./api/routes/tasks"),
       userRoutes    = require("./api/routes/users"),
       commentRoutes = require("./api/routes/comments"),
-      indexRoutes   = require("./api/routes/index"),
+      //indexRoutes   = require("./api/routes/index"),
       steamRoutes   = require("./api/routes/steam"),
       spotifyRoutes = require("./api/routes/spotify"),
       twitchRoutes  = require("./api/routes/twitch"),
       battlenetRoutes = require("./api/routes/battlenet");
+
+// Swagger Options
+let swaggerOptions = {
+  swaggerOptions: {
+    validatorUrl : null
+  },
+  explorer : true/*,
+  customCss: '.swagger-ui .topbar { display: none }',
+  customJs: '/custom.js'*/
+};
 
 // Set up App
 let app = express();
@@ -43,7 +56,8 @@ app.use(cors());
 app.use(passport.initialize());
 
 // Route config
-app.use("/", indexRoutes);
+// app.use("/", indexRoutes);
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks/:id/comments", commentRoutes);
