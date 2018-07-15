@@ -2,16 +2,20 @@ openapi: 3.0.0
 info:
   version: '1.0.0'
   title: 'Panthera'
-  description: 'Testing API'
+  description: 'APIs used for Panthera'
   
 servers:
   - url: https://panthera.herokuapp.com/api
   - url: http://localhost:3000/api
   
 paths: 
+  
+  # Task paths
   /tasks:
     get: 
       summary: Gets all Tasks
+      tags:
+        - tasks
       parameters:
         - name: pageNumber
           in: query
@@ -46,6 +50,8 @@ paths:
 
     post:
       summary: Create a new task
+      tags:
+        - tasks
       responses:
         '201':
           description: OK
@@ -62,6 +68,8 @@ paths:
   /tasks/{id}:
     get:
       summary: Returns a task by ID
+      tags:
+        - tasks
       parameters:
         - name: id
           in: path
@@ -86,6 +94,8 @@ paths:
 
     put:
       summary: Update a task by ID
+      tags:
+        - tasks
       parameters:
         - name: id
           in: path
@@ -103,6 +113,8 @@ paths:
 
     delete:
       summary: Delete a task by ID
+      tags:
+        - tasks
       parameters:
         - name: id
           in: path
@@ -115,3 +127,338 @@ paths:
           description: OK
         '400':
           description: Invalid request
+
+  # User Paths
+  /users:
+    get: 
+      summary: Gets all Users
+      tags:
+        - users
+      parameters:
+        - name: pageNumber
+          in: query
+          required: false
+          description: The page number to return
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: false
+          description: The number of results to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+    post:
+      summary: Create a new user
+      tags:
+        - users
+      responses:
+        '201':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+        '400':
+          description: Invalid request
+
+  /users/{id}:
+    get:
+      summary: Returns a user by ID
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+        '400':
+          description: Invalid request
+        '404':
+          description: Not Found
+
+    put:
+      summary: Update a user by ID
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to return
+          schema:
+            type: integer
+      responses:
+        '201':
+          description: OK
+        '400':
+          description: Invalid request
+        '404':
+          description: Not Found
+
+    delete:
+      summary: Delete a user by ID
+      tags:
+        - users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the user to return
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: OK
+        '400':
+          description: Invalid request
+  
+  # Task comment paths
+  /tasks/{id}/comments:
+    get:
+      summary: Get all comments for Task ID
+      tags:
+        - comments
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: The task id to return comments for
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  # Battlenet paths
+  /battlenet/wow/character:
+    get: 
+      summary: Get hardcoded wow character - eventually will get specified character using query params
+      tags:
+        - battlenet
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+  
+  # Steam paths
+  /steam/user:
+    get:
+      summary: Gets Steam User by id
+      tags:
+        - steam
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The steam user to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  /steam/ownedGames:
+    get:
+      summary: Gets Steam User's owned games by id
+      tags:
+        - steam
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The steam user whose owned games to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  /steam/recentGames:
+    get:
+      summary: Gets Steam User's recently played games by id
+      tags:
+        - steam
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The steam user whose recent games to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  # Twitch paths
+  /twitch/user:
+    get:
+      summary: Gets Twitch User by id
+      tags:
+        - twitch
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The twitch user to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  /twitch/streams:
+    get:
+      summary: Gets Twitch User's streams by id
+      tags:
+        - twitch
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The twitch user whose streams to return
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:   
+                  message:
+                    type: string
+
+  # Spotify paths
+  # /spotify:
