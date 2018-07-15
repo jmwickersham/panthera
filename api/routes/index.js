@@ -7,11 +7,11 @@ const auth    = jwt({
   userProperty: 'payload'
 });
 
-let ctrlProfile = require('../controllers/profile');
+//let ctrlProfile = require('../controllers/profile');
 let ctrlAuth    = require('../controllers/authentication');
 
 // Profile
-router.get('/profile', auth, ctrlProfile.profileRead);
+//router.get('/profile', auth, ctrlProfile.profileRead);
 
 // Authentication
 router.post('/register', ctrlAuth.register);

@@ -46,8 +46,7 @@ export class UserService {
 
   // GET user by id. Return `undefined` when id not found 
   getUserNo404<Data>(id: string): Observable<User> {
-    const url = `${this.userUrl}/?_id=${id}`;
-    return this.http.get<User[]>(url)
+    return this.http.get<User[]>(`${this.userUrl}/?_id=${id}`)
       .pipe(
         map(users => users[0]), // returns a {0|1} element array
         tap(h => {
@@ -60,8 +59,7 @@ export class UserService {
 
   // GET user by id. Will 404 if id not found 
   getUser(id: string): Observable<User> {
-    const url = `${this.userUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
+    return this.http.get<User>(`${this.userUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched user id=${id}`)),
       catchError(this.handleError<User>(`getUser id=${id}`))
     );
@@ -71,8 +69,7 @@ export class UserService {
 
   // POST: register a new user
   registerUser(user: User): Observable<User> {
-    const url = `${this.indexUrl}/register`;
-    return this.http.post<User>(url, user, httpOptions).pipe(
+    return this.http.post<User>(`${this.indexUrl}/register`, user, httpOptions).pipe(
       tap((user: User) => this.log(`registered user w/ id=${user._id}`)),
       catchError(this.handleError<User>('registerUser'))
     );
@@ -80,8 +77,7 @@ export class UserService {
 
   // POST: login user
   loginUser(user: User): Observable<User> {
-    const url = `${this.indexUrl}/login`;
-    return this.http.post<User>(url, user, httpOptions).pipe(
+    return this.http.post<User>(`${this.indexUrl}/login`, user, httpOptions).pipe(
       tap((user: User) => this.log(`logged user in w/ id=${user._id}`)),
       catchError(this.handleError<User>('loginUser'))
     );
@@ -91,8 +87,7 @@ export class UserService {
 
   // PUT: update the user on the server 
   updateUser(user: User): Observable<User> {
-    const url = `${this.userUrl}/${user._id}`;
-    return this.http.put<User>(url, user, httpOptions).pipe(
+    return this.http.put<User>(`${this.userUrl}/${user._id}`, user, httpOptions).pipe(
       tap(_ => this.log(`updated user id=${user._id}`)),
       catchError(this.handleError<User>(`updateUser user id=${user._id}`))
     );
@@ -103,9 +98,8 @@ export class UserService {
   // DELETE: delete the user from the server
   deleteUser (user: User | number): Observable<User> {
     const id = typeof user === 'number' ? user : user._id;
-    const url = `${this.userUrl}/${id}`;
 
-    return this.http.delete<User>(url, httpOptions).pipe(
+    return this.http.delete<User>(`${this.userUrl}/${id}`, httpOptions).pipe(
       tap(_ => this.log(`deleted user`)),
       catchError(this.handleError<User>('deleteUser'))
     );

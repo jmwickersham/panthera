@@ -45,8 +45,7 @@ export class TaskService {
 
   // GET task by id. Return `undefined` when id not found 
   getTaskNo404<Data>(id: string): Observable<Task> {
-    const url = `${this.taskUrl}/?_id=${id}`;
-    return this.http.get<Task[]>(url)
+    return this.http.get<Task[]>(`${this.taskUrl}/?_id=${id}`)
       .pipe(
         map(tasks => tasks[0]), // returns a {0|1} element array
         tap(h => {
@@ -59,8 +58,7 @@ export class TaskService {
 
   // GET task by id. Will 404 if id not found 
   getTask(id: string): Observable<Task> {
-    const url = `${this.taskUrl}/${id}`;
-    return this.http.get<Task>(url).pipe(
+    return this.http.get<Task>(`${this.taskUrl}/${id}`).pipe(
       tap(_ => this.log(`fetched task id=${id}`)),
       catchError(this.handleError<Task>(`getTask id=${id}`))
     );
@@ -80,8 +78,7 @@ export class TaskService {
 
   // PUT: update the task on the server 
   updateTask(task: Task): Observable<Task> {
-    const url = `${this.taskUrl}/${task._id}`;
-    return this.http.put<Task>(url, task, httpOptions).pipe(
+     return this.http.put<Task>(`${this.taskUrl}/${task._id}`, task, httpOptions).pipe(
       tap(_ => this.log(`updated task id=${task._id}`)),
       catchError(this.handleError<Task>(`updateTask task id=${task._id}`))
     );
@@ -92,9 +89,8 @@ export class TaskService {
   // DELETE: delete the task from the server
   deleteTask (task: Task | number): Observable<Task> {
     const id = typeof task === 'number' ? task : task._id;
-    const url = `${this.taskUrl}/${id}`;
 
-    return this.http.delete<Task>(url, httpOptions).pipe(
+    return this.http.delete<Task>(`${this.taskUrl}/${id}`, httpOptions).pipe(
       tap(_ => this.log(`deleted task`)),
       catchError(this.handleError<Task>('deleteTask'))
     );
