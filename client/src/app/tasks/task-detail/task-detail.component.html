@@ -1,4 +1,5 @@
-<div class="ui grid container">
+<div *ngIf="task$ | async as task; else loading" class="ui grid container">
+<!-- <div class="ui grid container"> -->
   <div class="sixteen wide column">
     <div class="ui inverted segment">
       <form class="ui inverted form" #taskForm="ngForm">
@@ -55,3 +56,7 @@
     <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
+
+<ng-template #loading class="ui grid container">
+  Loading...
+</ng-template>

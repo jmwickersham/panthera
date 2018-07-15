@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { User } from '../../models/user.model';
 import { UserService } from '../user.service';
@@ -13,6 +15,8 @@ import { AuthenticationService, TokenPayload } from '../../core/services/authent
   styleUrls: ['./user-detail.component.css']
 })
 export class UserDetailComponent implements OnInit {
+  user$: Observable<User>;
+
   @Input() user: User;
   credentials: TokenPayload = {
     username: '',
@@ -33,14 +37,23 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     if(this.route.snapshot.paramMap.get('id') != 'new') {
-      this.getUser();
+      this.user$ = this.getUser();
     }    
   }
 
-  getUser(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id)
-    .subscribe(user => this.user = user);
+  // getUser(): void {
+  //   const id = this.route.snapshot.paramMap.get('id');
+  //   this.userService.getUser(id)
+  //   .subscribe(user => this.user = user);
+  // }
+  
+  getUser() {
+    return this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => {
+        const id = params.get('id');
+        return this.userService.getUser(id);
+      })
+    );
   }
 
   updateUser(user: User): void {

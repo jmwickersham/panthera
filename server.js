@@ -22,13 +22,13 @@ require('./api/models/database');
 require('./api/config/passport');
 
 // Require JS Controller Exports
-const taskRoutes    = require("./api/routes/tasks"),
-      userRoutes    = require("./api/routes/users"),
-      commentRoutes = require("./api/routes/comments"),
-      //indexRoutes   = require("./api/routes/index"),
-      steamRoutes   = require("./api/routes/steam"),
-      spotifyRoutes = require("./api/routes/spotify"),
-      twitchRoutes  = require("./api/routes/twitch"),
+const taskRoutes      = require("./api/routes/tasks"),
+      userRoutes      = require("./api/routes/users"),
+      commentRoutes   = require("./api/routes/comments"),
+      indexRoutes     = require("./api/routes/index"),
+      steamRoutes     = require("./api/routes/steam"),
+      spotifyRoutes   = require("./api/routes/spotify"),
+      twitchRoutes    = require("./api/routes/twitch"),
       battlenetRoutes = require("./api/routes/battlenet");
 
 // Swagger Options
@@ -56,8 +56,8 @@ app.use(cors());
 app.use(passport.initialize());
 
 // Route config
-// app.use("/", indexRoutes);
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
+app.use("/", indexRoutes);
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument, swaggerOptions));
 app.use("/api/tasks", taskRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/tasks/:id/comments", commentRoutes);

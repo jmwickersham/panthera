@@ -1,4 +1,10 @@
-<div *ngIf="user" class="ui grid container">
+<!-- <div *ngIf="userObservable | async as user; else loading">
+  Hello {{user.last}}, {{user.first}}!
+</div> -->
+
+<!-- Add New User -->
+<div *ngIf="user$ | async as user; else loading" class="ui grid container">
+<!-- <div *ngIf="user" class="ui grid container"> -->
   <div class="sixteen wide column">
     <div class="ui inverted segment">
       <form class="ui inverted form" #userForm="ngForm">
@@ -45,6 +51,7 @@
 </div>
 
 <!-- TODO: Figure out how to combine these forms... -->
+<!-- <div #loading let-user class="ui grid container"> -->
 <div *ngIf="!user" class="ui grid container">
   <div class="sixteen wide column">
     <div class="ui inverted segment">
