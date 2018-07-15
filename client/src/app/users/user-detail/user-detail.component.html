@@ -50,48 +50,48 @@
   </div>
 </div>
 
-<!-- TODO: Figure out how to combine these forms... -->
-<!-- <div #loading let-user class="ui grid container"> -->
-<div *ngIf="!user" class="ui grid container">
-  <div class="sixteen wide column">
-    <div class="ui inverted segment">
-      <h2>Register</h2>
-      <form class="ui inverted form" #registerForm="ngForm">
-        <div class="two fields">
-          <div class="field">
-            <label>Username</label>
-            <input type="text" [(ngModel)]="credentials.username" name="username" autocomplete="username">
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password" [(ngModel)]="credentials.password" name="password" autocomplete="current-password">
-          </div>
-        </div>
-        <div class="two fields">
-          <div class="field">
-            <label>First Name</label>
-            <input type="text" [(ngModel)]="credentials.first_name" name="first_name" autocomplete="given-name">
-          </div>
-          <div class="field">
-            <label>Last Name</label>
-            <input type="text" [(ngModel)]="credentials.last_name" name="last_name" autocomplete="family-name">
-          </div>
-        </div>
-        <div class="two fields">
+<ng-template #loading let-user>
+  <div class="ui grid container">
+    <div class="sixteen wide column">
+      <div class="ui inverted segment">
+        <h2>Register</h2>
+        <form class="ui inverted form" #registerForm="ngForm">
+          <div class="two fields">
             <div class="field">
-              <label>Email</label>
-              <input type="email" [(ngModel)]="credentials.email" name="email" autocomplete="email">
+              <label>Username</label>
+              <input type="text" [(ngModel)]="credentials.username" name="username" autocomplete="username">
             </div>
             <div class="field">
-              <label>Profile Image URL</label>
-              <input type="text" [(ngModel)]="credentials.imageURL" name="imageURL">
+              <label>Password</label>
+              <input type="password" [(ngModel)]="credentials.password" name="password" autocomplete="current-password">
             </div>
           </div>
-      </form>
+          <div class="two fields">
+            <div class="field">
+              <label>First Name</label>
+              <input type="text" [(ngModel)]="credentials.first_name" name="first_name" autocomplete="given-name">
+            </div>
+            <div class="field">
+              <label>Last Name</label>
+              <input type="text" [(ngModel)]="credentials.last_name" name="last_name" autocomplete="family-name">
+            </div>
+          </div>
+          <div class="two fields">
+              <div class="field">
+                <label>Email</label>
+                <input type="email" [(ngModel)]="credentials.email" name="email" autocomplete="email">
+              </div>
+              <div class="field">
+                <label>Profile Image URL</label>
+                <input type="text" [(ngModel)]="credentials.imageURL" name="imageURL">
+              </div>
+            </div>
+        </form>
+      </div>
+      <button (click)="register()" class="ui right floated primary button">Register</button>
+      <button (click)="goBack()" class="ui right floated button">Go Back</button>
+      <p class="lead">Already registered? Please log in
+        <a routerLink="/login">here</a> instead.</p>
     </div>
-    <button (click)="register()" class="ui right floated primary button">Register</button>
-    <button (click)="goBack()" class="ui right floated button">Go Back</button>
-    <p class="lead">Already registered? Please log in
-      <a routerLink="/login">here</a> instead.</p>
   </div>
-</div>
+</ng-template>
