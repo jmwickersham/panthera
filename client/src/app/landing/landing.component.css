@@ -1,3 +1,7 @@
 .ui.grid {
     margin-top: 0rem;
 }
+
+.ui.cards > .card, .ui.card {
+    box-shadow: none;
+}

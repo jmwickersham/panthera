@@ -1,10 +1,10 @@
 <h3><i class="steam icon"></i>Steam</h3>
-<div *ngIf="!steamUser" class="ui card">
+<div *ngIf="!displayCard" class="ui card">
   <div class="content">
     There was a problem loading this Steam account.
   </div>
 </div>
-<div *ngIf="steamUser" class="ui card">
+<div *ngIf="displayCard" class="ui card">
   <a class="image" href="{{ steamUser.profileurl }}" target="_blank">
     <img src="{{ steamUser.avatarfull }}">
   </a>
