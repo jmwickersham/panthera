@@ -8,6 +8,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Task } from '../models/task.model';
+import { Comment } from '../models/comment.model';
 import { MessageService } from '../core/services/message.service';
 
 const httpOptions = {
@@ -71,6 +72,14 @@ export class TaskService {
     return this.http.post<Task>(this.taskUrl, task, httpOptions).pipe(
       tap((task: Task) => this.log(`added task w/ id=${task._id}`)),
       catchError(this.handleError<Task>('addTask'))
+    );
+  }
+
+  // POST: add a new comment to the server 
+  addComment(taskID: string, comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${this.taskUrl}/${taskID}/comments`, comment, httpOptions).pipe(
+      tap((comment: Comment) => this.log(`added comment w/ id=${comment._id}`)),
+      catchError(this.handleError<Comment>('addComment'))
     );
   }
 

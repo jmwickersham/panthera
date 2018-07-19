@@ -31,7 +31,7 @@ router.post("/", function(req, res) {
                     // comment.created_by.username = req.user.username;
 
                     // Save
-                    // comment.save();
+                    comment.save();
 
                     // Add comment to task
                     foundTask.comments.push(comment);

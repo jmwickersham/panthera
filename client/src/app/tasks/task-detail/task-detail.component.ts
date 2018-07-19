@@ -1,11 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { Task } from '../../models/task.model';
+import { Comment } from '../../models/comment.model';
 import { TaskService } from '../task.service';
+
+export interface DialogData {
+  commentText: string;
+}
 
 @Component({
   selector: 'app-task-detail',
@@ -15,13 +21,15 @@ import { TaskService } from '../task.service';
 
 export class TaskDetailComponent implements OnInit {
   task$: Observable<Task>;
+  commentText: string;
 
   @Input() task: Task;
 
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -29,12 +37,6 @@ export class TaskDetailComponent implements OnInit {
       this.task$ = this.getTask();
     }    
   }
-
-  // getTask(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   this.taskService.getTask(id)
-  //   .subscribe(task => this.task = task);
-  // }
 
   getTask() {
     return this.route.paramMap.pipe(
@@ -53,6 +55,13 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(task => this.task = task);
   }
 
+  addComment(task, comment: Comment): void {
+    if (!comment) { 
+      return; 
+    }
+    this.taskService.addComment(task._id, comment);
+  }
+
   updateTask(task: Task): void {
     this.taskService.updateTask(this.task)
       .subscribe();
@@ -65,5 +74,32 @@ export class TaskDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(commentDialog, {
+      width: '250px',
+      data: { commentText: this.commentText}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.addComment(this.task$, result);
+    });
+  }
+}
+
+@Component({
+  selector: 'comment-dialog',
+  templateUrl: 'comment-dialog.html',
+})
+export class commentDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<commentDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

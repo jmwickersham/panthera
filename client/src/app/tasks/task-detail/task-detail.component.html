@@ -45,6 +45,11 @@
             <td>{{ comment.createdAt | date:'medium':'-0700' }}</td>
             <td>{{ comment.updatedAt | date:'medium':'-0700' }}</td>
           </tr>
+          <tr>
+            <td colspan="3">
+              <button *ngIf="task" (click)="openDialog()" class="ui right floated primary button">Add Comment</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
