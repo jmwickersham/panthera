@@ -76,8 +76,9 @@ export class TaskService {
   }
 
   // POST: add a new comment to the server 
-  addComment(taskID: string, comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.taskUrl}/${taskID}/comments`, comment, httpOptions).pipe(
+  addComment(taskID: string, comment: string): Observable<Comment> {
+    let body = {"comment": {"text": comment}};
+    return this.http.post<Comment>(`${this.taskUrl}/${taskID}/comments/`, body, httpOptions).pipe(
       tap((comment: Comment) => this.log(`added comment w/ id=${comment._id}`)),
       catchError(this.handleError<Comment>('addComment'))
     );

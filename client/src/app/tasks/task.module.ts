@@ -6,6 +6,7 @@ import { TaskRoutingModule } from './task-routing.module';
 
 import { TaskListComponent } from './task-list/task-list.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { CommentDialogComponent } from './task-detail/comment-dialog/comment-dialog.component';
 
 @NgModule({
   imports: [
@@ -14,13 +15,17 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
   ],
   declarations: [
     TaskListComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    CommentDialogComponent
   ],
   exports: [
     TaskListComponent,
     TaskDetailComponent,
     SharedModule
   ],
-  providers: []
+  providers: [],
+  entryComponents: [
+    CommentDialogComponent
+  ]
 })
 export class TaskModule { }

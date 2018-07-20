@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { switchMap, subscribeOn } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
 
 import { Task } from '../../models/task.model';
 import { Comment } from '../../models/comment.model';
 import { TaskService } from '../task.service';
+import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
 
 export interface DialogData {
   commentText: string;
@@ -55,11 +56,11 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(task => this.task = task);
   }
 
-  addComment(task, comment: Comment): void {
+  addComment(taskID, comment: string): void {
     if (!comment) { 
       return; 
     }
-    this.taskService.addComment(task._id, comment);
+    this.taskService.addComment(taskID, comment);
   }
 
   updateTask(task: Task): void {
@@ -77,29 +78,14 @@ export class TaskDetailComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(commentDialog, {
-      width: '250px',
+    let dialogRef = this.dialog.open(CommentDialogComponent, {
       data: { commentText: this.commentText}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.addComment(this.task$, result);
+      let taskID = this.route.snapshot.paramMap.get('id');
+      console.log(`The dialog was closed - ${result} for ${taskID}`);
+      this.addComment(taskID, result);
     });
-  }
-}
-
-@Component({
-  selector: 'comment-dialog',
-  templateUrl: 'comment-dialog.html',
-})
-export class commentDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<commentDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 }

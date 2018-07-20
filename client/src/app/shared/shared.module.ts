@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatTableModule, MatPaginatorModule, MatFormFieldModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
@@ -11,7 +11,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule
   ],
   declarations: [],
   exports: [
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule
   ]
 })
 export class SharedModule { }
