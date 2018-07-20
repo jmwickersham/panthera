@@ -1,5 +1,4 @@
-<div *ngIf="task$ | async as task; else loading" class="ui grid container">
-<!-- <div class="ui grid container"> -->
+<div *ngIf="task$ | async as task; else new" class="ui grid container">
   <div class="sixteen wide column">
     <div class="ui inverted segment">
       <form class="ui inverted form" #taskForm="ngForm">
@@ -9,10 +8,8 @@
         </div>
         <div class="field">
           <label>Description</label>
-          <textarea [ngModel]="task?.description" 
-              (ngModelChange)="task.description=$event" 
-              name="description">
-                  {{ task?.description }}
+          <textarea [ngModel]="task?.description" (ngModelChange)="task.description=$event" name="description">
+            {{ task?.description }}
           </textarea>
         </div>
         <div class="two fields">
@@ -36,16 +33,16 @@
         </thead>
         <tbody>
           <tr *ngIf="task?.comments.length == 0">
-              <td>No comments listed</td>
-              <td></td>
-              <td></td>
+            <td>No comments listed</td>
+            <td></td>
+            <td></td>
           </tr>
           <tr *ngFor="let comment of task?.comments">
             <td>{{ comment.text }}</td>
             <td>{{ comment.createdAt | date:'medium':'-0700' }}</td>
             <td>{{ comment.updatedAt | date:'medium':'-0700' }}</td>
           </tr>
-          <tr *ngIf="task" >
+          <tr *ngIf="task">
             <td colspan="3">
               <button (click)="openDialog()" class="ui right floated primary button">Add Comment</button>
             </td>
@@ -54,14 +51,30 @@
       </table>
     </div>
 
-    <button *ngIf="!task" (click)="addTask(taskForm.value)" class="ui right floated primary button">Submit</button>
-    <button *ngIf="task" (click)="updateTask()" class="ui right floated primary button">Update</button>
-    <button *ngIf="task" (click)="deleteTask()" class="ui right floated red button">Delete</button>
-
+    <button (click)="updateTask()" class="ui right floated primary button">Update</button>
+    <button (click)="deleteTask()" class="ui right floated red button">Delete</button>
     <button (click)="goBack()" class="ui right floated button">Go Back</button>
   </div>
 </div>
 
-<ng-template #loading class="ui grid container">
-  Loading...
-</ng-template>
+<ng-template #new>
+    <div class="ui grid container">
+      <div class="sixteen wide column">
+        <div class="ui inverted segment">
+          <h2>Add New Task</h2>
+          <form class="ui inverted form" #newTaskForm="ngForm">
+              <div class="field">
+                <label>Short Description</label>
+                <input type="text" [(ngModel)]="newTask.short_description" name="short_description">
+              </div>
+              <div class="field">
+                <label>Description</label>
+                <textarea [(ngModel)]="newTask.description" name="description"></textarea>
+              </div>
+          </form>
+        </div>
+        <button (click)="addTask(newTaskForm.value)" class="ui right floated primary button">Submit</button>
+        <button (click)="goBack()" class="ui right floated button">Go Back</button>
+      </div>
+    </div>
+  </ng-template>

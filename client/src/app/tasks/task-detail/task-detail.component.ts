@@ -25,6 +25,10 @@ export class TaskDetailComponent implements OnInit {
   commentText: string;
 
   @Input() task: Task;
+  newTask: object = {
+    short_description: '',
+    description: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
