@@ -5,7 +5,7 @@ const dbURI = process.env.DATABASEURL || "mongodb://localhost:27017/panthera";
 
 let gracefulShutdown;
 
-mongoose.connect(dbURI);
+mongoose.connect(dbURI, { useNewUrlParser: true });
 
 // Connection Events
 mongoose.connection.on('connected', function() {

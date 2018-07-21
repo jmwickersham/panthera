@@ -22,7 +22,7 @@ router.get("/", function (req, res, next) {
     query.skip = pageSize * (pageNumber - 1);
     query.limit = pageSize;
 
-    Task.count({}, function(err, totalCount) {
+    Task.countDocuments({}, function(err, totalCount) {
         if (err) {
             response = {"error" : true, "message" : "Error fetching data"};
         }

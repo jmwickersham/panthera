@@ -22,9 +22,11 @@ export interface DialogData {
 
 export class TaskDetailComponent implements OnInit {
   task$: Observable<Task>;
+  comment$: Observable<Comment>;
   commentText: string;
 
   @Input() task: Task;
+  comment: Comment;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,7 +62,8 @@ export class TaskDetailComponent implements OnInit {
     if (!comment) { 
       return; 
     }
-    this.taskService.addComment(taskID, comment);
+    this.taskService.addComment(taskID, comment)
+      .subscribe(comment => this.comment = comment);;
   }
 
   updateTask(task: Task): void {
