@@ -66,8 +66,8 @@ export class UserDetailComponent implements OnInit {
       .subscribe(() => this.goBack());
   }
 
-  register() {
-    this.auth.register(this.credentials).subscribe(() => {
+  register(credentials: TokenPayload) {
+    this.auth.register(credentials).subscribe(() => {
       this.router.navigateByUrl('/landing');
     }, (err) => {
       console.error(err);
