@@ -39,7 +39,7 @@ export class TaskService {
       .set('pageSize', pageSize.toString())
     }).pipe(
         map(tasks => tasks),
-        tap(tasks => this.log(`fetched tasks`)),
+        tap(tasks => this.log(`fetched tasks: ${tasks}`)),
         catchError(this.handleError('getTasks', []))
       );
   }
@@ -78,9 +78,9 @@ export class TaskService {
   // POST: add a new comment to the server 
   addComment(taskID: string, comment: string): Observable<Comment> {
     let body = {"comment": {"text": comment}};
-    return this.http.post<Comment>(`${this.taskUrl}/${taskID}/comments/`, body, httpOptions).pipe(
+    return this.http.post<Comment>(`${this.taskUrl}/${taskID}/comments`, body, httpOptions).pipe(
       tap((comment: Comment) => this.log(`added comment w/ id=${comment._id}`)),
-      catchError(this.handleError<Comment>('addComment'))
+      catchError(this.handleError<Comment>(`addComment for task: ${taskID}`))
     );
   }
 

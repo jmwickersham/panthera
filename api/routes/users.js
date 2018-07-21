@@ -22,7 +22,7 @@ router.get("/", function (req, res, next) {
     query.skip = pageSize * (pageNumber - 1);
     query.limit = pageSize;
 
-    User.count({}, function (err, totalCount) {
+    User.countDocuments({}, function (err, totalCount) {
         if (err) {
             response = {
                 "error": true,
