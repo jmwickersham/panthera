@@ -1,10 +1,10 @@
 import { environment } from '../environments/environment';
 
 // Modules
-import * as Raven                             from 'raven-js';
-import { NgModule, ErrorHandler }             from '@angular/core';
-import { BrowserModule }                      from '@angular/platform-browser';
-import { BrowserAnimationsModule }            from '@angular/platform-browser/animations'
+import * as Raven                     from 'raven-js';
+import { NgModule, ErrorHandler }     from '@angular/core';
+import { BrowserModule }              from '@angular/platform-browser';
+import { BrowserAnimationsModule }    from '@angular/platform-browser/animations';
 
 // App Root
 import { AppComponent } from './app.component';
@@ -43,7 +43,9 @@ export class RavenErrorHandler extends ErrorHandler {
   providers: [
     { provide: ErrorHandler, useClass: RavenErrorHandler }
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ 
+    AppComponent 
+  ]
 })
 
 export class AppModule { }

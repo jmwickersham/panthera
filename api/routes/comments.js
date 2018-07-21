@@ -9,6 +9,8 @@ let Comment = require("../models/comment"),
 // Comment Create
 // TODO: Add middleware to check if user is logged in
 router.post("/", function(req, res) {
+    console.log(`inside post comment for ${req.params.id}`);
+
     // Find task by ID
     Task.findById(req.params.id, function(err, foundTask) {
         if (err) {
@@ -31,7 +33,7 @@ router.post("/", function(req, res) {
                     // comment.created_by.username = req.user.username;
 
                     // Save
-                    // comment.save();
+                    comment.save();
 
                     // Add comment to task
                     foundTask.comments.push(comment);

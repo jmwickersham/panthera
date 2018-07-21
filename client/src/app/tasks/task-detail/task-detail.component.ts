@@ -2,10 +2,17 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Location } from '@angular/common';
 import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, subscribeOn } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
 
 import { Task } from '../../models/task.model';
+import { Comment } from '../../models/comment.model';
 import { TaskService } from '../task.service';
+import { CommentDialogComponent } from './comment-dialog/comment-dialog.component';
+
+export interface DialogData {
+  commentText: string;
+}
 
 @Component({
   selector: 'app-task-detail',
@@ -15,13 +22,19 @@ import { TaskService } from '../task.service';
 
 export class TaskDetailComponent implements OnInit {
   task$: Observable<Task>;
+  commentText: string;
 
   @Input() task: Task;
+  newTask: object = {
+    short_description: '',
+    description: ''
+  };
 
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
-    private location: Location
+    private location: Location,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -29,12 +42,6 @@ export class TaskDetailComponent implements OnInit {
       this.task$ = this.getTask();
     }    
   }
-
-  // getTask(): void {
-  //   const id = this.route.snapshot.paramMap.get('id');
-  //   this.taskService.getTask(id)
-  //   .subscribe(task => this.task = task);
-  // }
 
   getTask() {
     return this.route.paramMap.pipe(
@@ -53,6 +60,13 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(task => this.task = task);
   }
 
+  addComment(taskID, comment: string): void {
+    if (!comment) { 
+      return; 
+    }
+    this.taskService.addComment(taskID, comment);
+  }
+
   updateTask(task: Task): void {
     this.taskService.updateTask(this.task)
       .subscribe();
@@ -65,5 +79,17 @@ export class TaskDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  openDialog(): void {
+    let dialogRef = this.dialog.open(CommentDialogComponent, {
+      data: { commentText: this.commentText}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      let taskID = this.route.snapshot.paramMap.get('id');
+      console.log(`The dialog was closed - ${result} for ${taskID}`);
+      this.addComment(taskID, result);
+    });
   }
 }

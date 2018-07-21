@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Add New Comment</h1>
+<form class="ui form" #commentForm="ngForm">
+  <div mat-dialog-content>
+    <div class="field">
+      <label>Short Description</label>
+      <input type="text" [(ngModel)]="data.commentText" name="commentText">
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button class="ui right floated red button" (click)="onNoClick()">Cancel</button>
+    <button class="ui right floated primary button" [mat-dialog-close]="data.commentText" cdkFocusInitial>Submit</button>
+  </div>
+</form>
