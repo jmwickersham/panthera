@@ -5,6 +5,7 @@ import * as Raven                     from 'raven-js';
 import { NgModule, ErrorHandler }     from '@angular/core';
 import { BrowserModule }              from '@angular/platform-browser';
 import { BrowserAnimationsModule }    from '@angular/platform-browser/animations';
+import { OAuthModule }                from 'angular-oauth2-oidc';
 
 // App Root
 import { AppComponent } from './app.component';
@@ -35,7 +36,8 @@ export class RavenErrorHandler extends ErrorHandler {
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,
-    AppRoutingModule
+    AppRoutingModule,
+    OAuthModule.forRoot()
   ],
   declarations: [
     AppComponent

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Injectable({
   providedIn: 'root'
@@ -8,15 +9,25 @@ import { AuthenticationService } from './authentication.service';
 export class AuthGuardService implements CanActivate {
 
   constructor(
-    private auth: AuthenticationService, 
-    private router: Router
+    private auth: AuthenticationService,
+    private router: Router,
+    private oauthService: OAuthService
   ) { }
 
   canActivate() {
-    if (!this.auth.isLoggedIn()) {
-      this.router.navigateByUrl('/');
-      return false;
+    //   if (!this.auth.isLoggedIn()) {
+    //     this.router.navigateByUrl('/');
+    //     return false;
+    //   }
+    //   return true;
+    // }
+    if (this.oauthService.hasValidIdToken()) {
+      console.log('auth confirmed');
+      return true;
     }
-    return true;
+
+    console.log('not confirmed');
+    this.router.navigate(['/landing']);
+    return false;
   }
 }

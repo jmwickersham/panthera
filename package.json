@@ -30,6 +30,7 @@
     "@angular/platform-browser": "6.0.7",
     "@angular/platform-browser-dynamic": "6.0.7",
     "@angular/router": "6.0.7",
+    "angular-oauth2-oidc": "3.1.4",
     "body-parser": "^1.18.2",
     "concurrently": "^3.5.1",
     "cookie-parser": "^1.4.3",
@@ -51,7 +52,7 @@
     "raven-js": "^3.25.2",
     "request-promise": "^4.2.2",
     "rxjs": "6",
-    "rxjs-compat": "6",
+    "rxjs-compat": "6.1.0",
     "semantic-ui-css": "^2.3.1",
     "serve-favicon": "^2.5.0",
     "swagger-ui-express": "^3.0.10",
@@ -80,7 +81,7 @@
     "typescript": "2.7.2"
   },
   "engines": {
-    "node": "8.11.1",
-    "yarn": "1.6.0"
+    "node": ">=8.11.1",
+    "yarn": ">=1.6.0"
   }
 }

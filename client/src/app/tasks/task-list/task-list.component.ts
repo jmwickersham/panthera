@@ -22,9 +22,13 @@ export class TaskListComponent implements OnInit {
   getTasks(): void {
     this.taskService.getTasks()
       .subscribe(tasks => {
-        this.currentPage = tasks["metadata"].currentPage;
-        this.totalPages = tasks["metadata"].totalPages;
-        this.tasks = tasks["data"]
+        console.log(tasks);
+        this.currentPage = tasks["pageable"].pageNumber;
+        this.totalPages = tasks["totalPages"];
+        this.tasks = tasks["content"];
+        //this.currentPage = tasks["metadata"].currentPage;
+        //this.totalPages = tasks["metadata"].totalPages;
+        //this.tasks = tasks["data"]
       });
   }
 
@@ -38,7 +42,9 @@ export class TaskListComponent implements OnInit {
     this.currentPage = page;
     this.taskService.getTasks(page)
     .subscribe(tasks => {
-      this.tasks = tasks["data"]
+      //this.tasks = tasks["data"]
+      this.tasks = tasks["content"]
+
     });
   }
 

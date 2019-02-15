@@ -15,8 +15,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let task of tasks">
-          <td><a routerLink="/tasks/{{ task._id }}"><i class="info circle icon"></i></a></td>
-          <td>{{ task.short_description }}...</td>
+          <td><a routerLink="/tasks/{{ task.id }}"><i class="info circle icon"></i></a></td>
+          <td>{{ task.short_Description }}...</td>
           <td>{{ task.description | slice:0:100 }}</td>
           <td>{{ task.createdAt | date:'medium':'-0700' }}</td>
           <td>{{ task.updatedAt | date:'medium':'-0700' }}</td>

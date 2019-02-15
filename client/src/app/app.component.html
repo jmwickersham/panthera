@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<div class="ui fixed inverted borderless menu">
+<!-- <div class="ui fixed inverted borderless menu">
   <div class="ui container">
     <a class="item" (click)="onToggle()">
       <i class="sidebar icon"></i>
@@ -55,6 +55,26 @@
       <a *ngIf="auth.isLoggedIn()" class="item ui inverted button" (click)="auth.logout()">Logout</a>
       <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="users/new">Register</a>
       <a *ngIf="!auth.isLoggedIn()" class="item ui inverted button" routerLink="login">Login</a>
+    </div>
+  </div>
+</div> -->
+
+<div class="ui fixed inverted borderless menu">
+  <div class="ui container">
+    <a class="item" (click)="onToggle()">
+      <i class="sidebar icon"></i>
+      Menu
+    </a>
+    <a class="item" routerLink="/">{{ title }}</a>
+    <div class="right menu">
+      <a *ngIf="givenName" class="item" routerLink="users">
+        Logged in as:&nbsp;&nbsp;
+        <!-- <img *ngIf="auth.getUserDetails().imageURL" class="ui avatar image" [src]="auth.getUserDetails()?.imageURL">--> 
+        {{ givenName }}
+      </a>
+      <a *ngIf="givenName" class="item ui inverted button" (click)="logout()">Logout</a>
+      <a *ngIf="!givenName" class="item ui inverted button" routerLink="users/new">Register</a>
+      <a *ngIf="!givenName" class="item ui inverted button" (click)="login()">Login</a>
     </div>
   </div>
 </div>
